@@ -22,13 +22,17 @@ cases_color <- "black"
 death_color <- "red"
 #------------------ Data ------------------
 source("code/import_data.R")
+source("code/population.R")
 
 coronavirus <- left_join(cases, deaths) %>% 
   mutate(state = ifelse(is.na(state), country, state)) %>% 
-#  mutate_at(vars(state,country), as.factor) %>% 
-  str_replace_all(c("US" = "United States", "Taiwan*" = "Taiwan"))
+  mutate(state = ifelse(state == "Taiwan*", "Taiwan",state)) %>% 
+  mutate(country = ifelse(country == "Taiwan*", "Taiwan",country)) %>%
+  mutate(state = ifelse(state == "US", "United States",state)) %>%
+  mutate(country = ifelse(country == "US", "United States",country))
 
-coronavirus <- coronavirus %>% left_join(., world_pop, by = c("country", "country"))
+coronavirus <- coronavirus %>% left_join(., world_pop, by = c("country", "country")) %>% 
+  mutate(per_million = country_cum_cases/population * 1000000)
 
 latest <- coronavirus %>% filter(Date == max(Date))
 nz <- coronavirus %>% filter(country == "New Zealand")
@@ -90,11 +94,15 @@ Row
 ```{r}
 
 # plot nz growth
-who <- "New Zealand"
-who <- c("New Zealand", "Australia", "US")
+#who <- "New Zealand"
+who <- c("New Zealand", "Australia", "United States", "Italy")
 
-p1 <- coronavirus %>% filter(country == who, cumulative_cases > 0) %>% 
-  ggplot(aes(x = Date, y = country_cum_cases/population*1000000, colour = country)) +
+p1 <- coronavirus %>% filter(country == who, cumulative_cases > 100) %>%
+  group_by(country) %>% 
+  mutate(days100 = dense_rank(Date)) %>% 
+  ungroup() %>% 
+  #ggplot(aes(x = days100, y = per_million, colour = country)) +
+  ggplot(aes(x = days100, y = country_cum_cases, colour = country)) +
   geom_point() +
   geom_line()
 p1

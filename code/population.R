@@ -6,7 +6,7 @@ library(xml2)
 
 world_url <- "https://www.worldometers.info/world-population/population-by-country/"
 
-world_pop <- read_html(pop_url) %>%
+world_pop <- read_html(world_url) %>%
   html_nodes("table") %>%
   html_table(fill=TRUE) %>%
   .[[1]] %>% 
