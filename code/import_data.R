@@ -17,7 +17,7 @@ cases <- read_csv(jhu_confirmed) %>% rename(state = "Province/State", country = 
   mutate(Date = mdy(Date)) %>%
   
   # cumultaive cases by province and country
-  group_by(country,province) %>% 
+  group_by(country,state) %>% 
   mutate(cases = cumulative_cases - lag(cumulative_cases)) %>% 
   group_by(country, Date) %>%
   mutate(country_cum_cases = sum(cumulative_cases)) %>% 
@@ -29,11 +29,11 @@ cases <- read_csv(jhu_confirmed) %>% rename(state = "Province/State", country = 
   mutate(cases = ifelse(is.na(cases), 0, cases ))
 
 deaths <- read_csv(jhu_deaths) %>% rename(state = "Province/State", country = "Country/Region") %>% 
-  pivot_longer(-c(state.area, country, Lat, Long), names_to = "Date", values_to = "cumulative_deaths") %>% 
+  pivot_longer(-c(state, country, Lat, Long), names_to = "Date", values_to = "cumulative_deaths") %>% 
   mutate(Date = mdy(Date)) %>%
   
   # cumultaive deaths by province and country
-  group_by(country,province) %>% 
+  group_by(country,state) %>% 
   mutate(deaths = cumulative_deaths - lag(cumulative_deaths)) %>% 
   group_by(country, Date) %>%
   mutate(country_cum_deaths = sum(cumulative_deaths)) %>% 
@@ -43,3 +43,4 @@ deaths <- read_csv(jhu_deaths) %>% rename(state = "Province/State", country = "C
   # clean up the NA and negative values
   mutate(country_deaths = ifelse(country_deaths < 0, 0, country_deaths)) %>% 
   mutate(deaths = ifelse(is.na(deaths), 0, deaths ))
+
