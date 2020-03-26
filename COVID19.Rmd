@@ -29,10 +29,9 @@ coronavirus <- left_join(cases, deaths) %>%
   mutate(state = ifelse(state == "Taiwan*", "Taiwan",state)) %>% 
   mutate(country = ifelse(country == "Taiwan*", "Taiwan",country)) %>%
   mutate(state = ifelse(state == "US", "United States",state)) %>%
-  mutate(country = ifelse(country == "US", "United States",country))
-
-coronavirus <- coronavirus %>% left_join(., world_pop, by = c("country", "country")) %>% 
-  mutate(per_million = country_cum_cases/population * 1000000)
+  mutate(country = ifelse(country == "US", "United States",country)) %>% 
+  left_join(., world_pop, by = c("country", "country")) %>% 
+  mutate(per_million = round(country_cum_cases/population * 1000000,1))
 
 latest <- coronavirus %>% filter(Date == max(Date))
 nz <- coronavirus %>% filter(country == "New Zealand")
