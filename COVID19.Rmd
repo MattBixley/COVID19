@@ -1,6 +1,6 @@
 ---
-title: "COVID19 - New Zealand"
-author: "Matt Bixley"
+title: "**COVID19 - New Zealand**"
+author: "**Matt Bixley**"
 output: 
   flexdashboard::flex_dashboard:
     orientation: rows
@@ -12,11 +12,12 @@ output:
 
 <style>                     
 .navbar {
-  background-color:darkgray;
+  background-color:silver;
   border-color:black;
 }
 .navbar-brand {
 color:black!important;
+font-size: 20px;
 }
 </style>  
 
@@ -86,24 +87,26 @@ Sidebar {.sidebar}
 
 __**The Lockdown Diaries**__
 
+Updates likely 9am NZDT with the over night European data. Just after 1pm NZDT with the New Zealand daily news and sometime in the evening.  
+
 ![](images/2019_nCoV.png){ width=100% }
 
-**Saturday 28th** (d3)  
+**Saturday March 28th** (d3)  
 
 
-**Friday 27th** (d2)  
+**Friday March 27th** (d2)  
 Got this dashboard underway  
 3x1min Boats, 2x1min Russian Twists  
 2x1min Supermans each pair  
 
-**Thursday 26th** (d1)  
+**Thursday March 26th** (d1)  
 Home D - loving it  
 PE instituted for the kids (Not Happy)  
 3x20 Pushups  
 3x10 Squat Jumps  
 30 minute run  
 
-**Wednesday 25th** (d-1)  
+**Wednesday March 25th** (d-1)  
 Mitre10 for Paint rollers and bits and pieces  
 NZDataScience Zoom Morning Tea  
 Builders cleaned the windows  
@@ -113,14 +116,14 @@ Sparky rigged up the Hotwater Cylinder in the extension (good bastard)
 3x10 Forward Lunges  
 30 minute run  
 
-**Tuesday 24th** (d-2)  
+**Tuesday March 24th** (d-2)  
 Set up the home office, nipped down to work for a chair  
 5x1min Planks  
 3x10 Reverse Lunges  
 30 minute run  
 
 
-Summary
+**Summary**
 =======================================================================
 
 Row {data-width=400}
@@ -150,18 +153,15 @@ valueBox(
 )
 ```
 
-### death {.value-box}
+### update {.value-box}
 
 ```{r}
-
 valueBox(
-  value = paste(format(max(nz$cum_deaths), big.mark = ","), "", sep = " "),
-  caption = "Death cases (death rate)",
-  icon = "fas fa-user-md",
-  #color = ifelse(nz$cumulative_deaths > 0, "red", "silver")
+  value = paste0(format(Sys.time(), "%B %d"),", ",format(Sys.time(), "%H:%M")),
+  caption = "Updated",
+  icon = "fas fa-clock",
   color = "silver"
 )
-
 ```
 
 
@@ -189,7 +189,7 @@ p1 + theme_wsj() + scale_colour_wsj()
 
 ```
 
-Comparison
+**Comparison**
 =======================================================================
 
 
@@ -235,7 +235,7 @@ p3 + theme_wsj(color = "gray", ) + scale_colour_wsj() +
 ```
 
 
-Map
+**Map**
 =======================================================================
 
 ### **World map of cases**
@@ -255,7 +255,7 @@ Map Coming Soon
 ```
 
 
-About
+**About**
 =======================================================================
 
 **The Coronavirus Dashboard: the case of New Zealand**
