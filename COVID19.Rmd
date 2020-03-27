@@ -4,40 +4,82 @@ author: "Matt Bixley"
 output: 
   flexdashboard::flex_dashboard:
     orientation: rows
-    # social: ["facebook", "twitter", "linkedin"]
     source_code: embed
     vertical_layout: fill
+    theme: bootstrap
+    #logo: images/coronavirus.png
 ---
+
+<style>                     
+.navbar {
+  background-color:darkgray;
+  border-color:black;
+}
+.navbar-brand {
+color:black!important;
+}
+</style>  
 
 ```{r setup, include=FALSE}
 #------------------ Packages ------------------
 library(flexdashboard)
 library(tidyverse)
 library(lubridate)
+library(ggthemes)
+
+#theme_set(theme_wsj)
+#theme_set(theme_bw)
 
 #------------------ Parameters ------------------
 # Set colors
-# https://www.w3.org/TR/css-color-3/#svg-color
-cases_color <- "black"
-death_color <- "red"
+
+
 #------------------ Data ------------------
-source("code/import_data.R")
-source("code/population.R")
+source("code/import_jhu.R")
+#source("code/population.R")
 
-coronavirus <- left_join(cases, deaths) %>% 
-  mutate(state = ifelse(is.na(state), country, state)) %>% 
-  mutate(state = ifelse(state == "Taiwan*", "Taiwan",state)) %>% 
+# read the jhu set for the lat/long
+jhu_confirmed <- "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"
+jhu <- read_csv(jhu_confirmed) %>% 
+  rename(country = "Country/Region") %>%
+  map_df(str_replace_all, pattern = " ", replacement = "_") %>% 
   mutate(country = ifelse(country == "Taiwan*", "Taiwan",country)) %>%
-  mutate(state = ifelse(state == "US", "United States",state)) %>%
-  mutate(country = ifelse(country == "US", "United States",country)) %>% 
-  left_join(., world_pop, by = c("country", "country")) %>% 
-  mutate(per_million = round(country_cum_cases/population * 1000000,1))
+  mutate(country = ifelse(country == "US", "United_States_of_America",country)) %>%
+  group_by(country) %>% # hack to get just one copy of country
+  mutate(first = rank(country)) %>% 
+  filter(first == 1) %>%
+  select(country, Lat, Long)
 
-latest <- coronavirus %>% filter(Date == max(Date))
-nz <- coronavirus %>% filter(country == "New Zealand")
+# Import from the European CDC
+ecdc_url <- "https://opendata.ecdc.europa.eu/covid19/casedistribution/csv/"
+download.file(url = ecdc_url, destfile = "data/ecdc.csv")
 
-coronavirus %>% filter(country == "Australia")
+covid19 <- read_csv("data/ecdc.csv") %>% 
+  rename(date = "dateRep", country = "countriesAndTerritories", population = "popData2018") %>% 
+  left_join(.,jhu) %>% # merge with jhu to get the lat long
+  mutate(date = dmy(date)) %>% 
+  arrange(date, country) %>% 
+  group_by(country) %>% 
+  mutate(cum_cases = cumsum(cases)) %>%
+  mutate(cum_deaths = cumsum(deaths)) %>% 
+  ungroup() %>% 
+  mutate(country = ifelse(country == "United_States_of_America", "USA",country)) %>%
+  mutate(per_million = round(cum_cases/population*1000000,1)) # per capita
+
+
+
+latest <- covid19 %>% filter(date == max(date))
+nz <- covid19 %>% filter(country == "New_Zealand")
+usa <- covid19 %>% filter(country == "USA")
+italy <- covid19 %>% filter(country == "Italy")
+
 ```
+
+Sidebar {.sidebar}
+=====================================
+
+![](images/2019_nCoV.png){ width=100% }
+
 
 Summary
 =======================================================================
@@ -48,12 +90,12 @@ Row {data-width=400}
 ### confirmed {.value-box}
 
 ```{r}
-
+#valueBox(value, subtitle, icon = NULL, color = "aqua", width = 4,href = NULL)
 valueBox(
-  value = paste(format(max(nz$cumulative_cases), big.mark = ","), "", sep = " "),
+  value = paste(format(max(nz$cum_cases), big.mark = ","), "", sep = " "),
   caption = "Total confirmed cases",
   icon = "fas fa-user-md",
-  color = confirmed_color
+  color = "silver"
 )
 ```
 
@@ -62,13 +104,10 @@ valueBox(
 
 ```{r}
 valueBox(
-  value = paste(format(max(nz$cumulative_deaths), big.mark = ","), " (",
-    round(100 * sum(df$unrecovered, na.rm = TRUE) / sum(df$confirmed), 1),
-    "%)",
-    sep = ""
-  ),
-  caption = "Active cases (% of total cases)", icon = "fas fa-ambulance",
-  color = active_color
+  value = paste(format(max(nz$per_million), big.mark = ","), "", sep = " "),
+  caption = "Cases per million",
+  icon = "fas fa-user-md",
+  color = "silver"
 )
 ```
 
@@ -77,11 +116,13 @@ valueBox(
 ```{r}
 
 valueBox(
-  value = paste(format(max(nz$cumulative_deaths), big.mark = ","), "", sep = " "),
+  value = paste(format(max(nz$cum_deaths), big.mark = ","), "", sep = " "),
   caption = "Death cases (death rate)",
-  icon = "fas fa-heart-broken",
-  color = death_color
+  icon = "fas fa-user-md",
+  #color = ifelse(nz$cumulative_deaths > 0, "red", "silver")
+  color = "silver"
 )
+
 ```
 
 
@@ -94,22 +135,19 @@ Row
 
 # plot nz growth
 #who <- "New Zealand"
-who <- c("New Zealand", "Australia", "United States", "Italy")
+who <- c("New_Zealand", "Australia", "USA", "Italy")
 
-p1 <- coronavirus %>% filter(country == who, cumulative_cases > 100) %>%
+p1 <- covid19 %>% filter(country %in% who, cum_cases > 100) %>%
   group_by(country) %>% 
-  mutate(days100 = dense_rank(Date)) %>% 
-  ungroup() %>% 
-  #ggplot(aes(x = days100, y = per_million, colour = country)) +
-  ggplot(aes(x = days100, y = country_cum_cases, colour = country)) +
+  mutate(days100 = dense_rank(date)) %>% 
+  ungroup() %>%
+  #ggplot(aes(x = date, y =cum_cases , colour = country)) +
+  ggplot(aes(x = days100, y = per_million, colour = country)) +
   geom_point() +
   geom_line()
-p1
+#p1 + theme_economist()+ scale_colour_economist()
+p1 + theme_wsj()+ scale_colour_wsj("colors6")
 
-p2 <- coronavirus %>% filter(country == who) %>% 
-  ggplot(aes(x = Date, y = country_cases, fill = country)) +
-  geom_bar(stat="identity", position = "dodge")
-p2
 
 ```
 
@@ -127,8 +165,11 @@ Column {data-width=400}
 
 #----------------------------------------
 # Plotting the data
-
-p2
+who <- c("New Zealand", "Australia", "USA", "Italy")
+p2 <- covid19 %>% filter(country %in% who) %>% 
+  ggplot(aes(x = date, y = cases, fill = country)) +
+  geom_bar(stat="identity", position = "dodge")
+p2 + theme_wsj()+ scale_colour_wsj("colors6")
 ```
  
 ### **Cases distribution by type**
@@ -143,16 +184,16 @@ Map
 
 ### **World map of cases** (*use + and - icons to zoom in/out*)
 
-```{r, eval = f}
-# make a ma
-library(leaflet)
-library(leafpop)
+```{r}
+# make a map
+#library(leaflet)
+#library(leafpop)
 
-map_object %>%
-  addLayersControl(
-    overlayGroups = names(cv_data_for_plot.split),
-    options = layersControlOptions(collapsed = FALSE)
-  )
+#map_object %>%
+#  addLayersControl(
+#    overlayGroups = names(cv_data_for_plot.split),
+#    options = layersControlOptions(collapsed = FALSE)
+#  )
 ```
 
 
@@ -164,33 +205,27 @@ About
 
 **The Coronavirus Dashboard: the case of New Zealand**
 
-This Coronavirus dashboard: the case of New Zealand provides an overview of the 2019 Novel Coronavirus COVID-19 (2019-nCoV) epidemic for New Zealand. This dashboard is built with R using the R Makrdown framework and was adapted from this [dashboard](https://ramikrispin.github.io/coronavirus_dashboard/){target="_blank"} by Rami Krispin.
+This Coronavirus dashboard: the case of New Zealand provides an overview of the 2019 Novel Coronavirus COVID-19 (2019-nCoV) epidemic for New Zealand. This dashboard is built with R using the R Makrdown framework and with Flexadashboard.
 
 **Code**
 
-The code behind this dashboard is available on [GitHub](https://github.com/AntoineSoetewey/coronavirus_dashboard){target="_blank"}.
+The code behind this dashboard is available on [GitHub](https://github.com/mattbixley/covid19){target="_blank"}.
 
 **Data**
 
-The input data for this dashboard is the dataset available from the [`{coronavirus}`](https://github.com/RamiKrispin/coronavirus){target="_blank"} R package. Make sure to download the development version of the package to have the latest data:
-
-```
-install.packages("devtools")
-devtools::install_github("RamiKrispin/coronavirus")
-```
+The input data for this dashboard is the dataset available from the
+[![](images/logo-ecdc.png){ width=3%}](https://www.ecdc.europa.eu/en/publications-data/download-todays-data-geographic-distribution-covid-19-cases-worldwide){target="_blank"} European Centre for Disease Prevention and Control
 
 The data and dashboard are refreshed on a daily basis.
 
-The raw data is pulled from the Johns Hopkins University Center for Systems Science and Engineering (JHU CCSE) Coronavirus [repository](https://github.com/RamiKrispin/coronavirus-csv){target="_blank"}.
+Some data is also pulled from the Johns Hopkins University Center for Systems Science and Engineering (JHU CCSE) Coronavirus [repository](https://github.com/CSSEGISandData/COVID-19){target="_blank"}.
+But I find them late to update due to time zone differences.
 
 **Contact**
 
-For any question or feedback, you can [contact me](https://www.statsandr.com/contact/). More information about this dashboard can be found in this [article](https://www.statsandr.com/blog/how-to-create-a-simple-coronavirus-dashboard-specific-to-your-country-in-r/).
+For any question or feedback, you can email me <mattbixley72@gmail.com> or report an issue at the [GitHub repo](https://github.com/MattBixley/COVID19/issues){target="_blank"}
 
 **Update**
 
-The data is as of `r format(max(coronavirus$date), "%A %B %d, %Y")` and the dashboard has been updated on `r format(Sys.time(), "%A %B %d, %Y")`.
+The data is as of `r format(max(covid19$date), "%A %B %d, %Y")` and the dashboard has been updated on `r format(Sys.time(), "%A %B %d, %Y")` at `r format(Sys.time(), "%H:%M")`.
 
-
-
-*Go back to [www.statsandr.com](https://www.statsandr.com/) (blog) or [www.antoinesoetewey.com](https://www.antoinesoetewey.com/) (personal website)*.

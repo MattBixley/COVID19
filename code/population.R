@@ -23,7 +23,8 @@ usa <- "https://simple.wikipedia.org/wiki/List_of_U.S._states_by_population"
 china <- "https://en.wikipedia.org/wiki/List_of_Chinese_administrative_divisions_by_population"
 
 # Australia - ""
-australia <- as.data.frame(state = c("New South Wales", "Queensland", "Victoria", "Australian Capital Territory",
-                                     "Northern Territory","South Australia","Tasmania","Western Australia"),
-                           population = c(8089525, 5095100, 6594804, 426709, 245869, 1751693, 534281, 2621680),
-                           area = c(809952,1851736,237657, 2358, 1419630, 1044353, 90758, 2642753))
+state = c("New South Wales", "Queensland", "Victoria", "Australian Capital Territory",
+                                     "Northern Territory","South Australia","Tasmania","Western Australia")
+population = c(8089525, 5095100, 6594804, 426709, 245869, 1751693, 534281, 2621680)
+area = c(809952,1851736,237657, 2358, 1419630, 1044353, 90758, 2642753)
+aus_pop <- tibble(state, population, area)
