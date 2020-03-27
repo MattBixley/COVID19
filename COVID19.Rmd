@@ -26,16 +26,19 @@ library(flexdashboard)
 library(tidyverse)
 library(lubridate)
 library(ggthemes)
+library(scales)
 
 #theme_set(theme_wsj)
 #theme_set(theme_bw)
 
 #------------------ Parameters ------------------
-# Set colors
-
+# cases today
+nzcases = 85
+nzdeaths = 0 
 
 #------------------ Data ------------------
 source("code/import_jhu.R")
+source("code/insert_today.R")
 #source("code/population.R")
 
 # read the jhu set for the lat/long
@@ -44,6 +47,7 @@ jhu <- read_csv(jhu_confirmed) %>%
   rename(country = "Country/Region") %>%
   map_df(str_replace_all, pattern = " ", replacement = "_") %>% 
   mutate(country = ifelse(country == "Taiwan*", "Taiwan",country)) %>%
+  mutate(country = ifelse(country == "Korea,_South", "South_Korea",country)) %>%
   mutate(country = ifelse(country == "US", "United_States_of_America",country)) %>%
   group_by(country) %>% # hack to get just one copy of country
   mutate(first = rank(country)) %>% 
@@ -59,14 +63,17 @@ covid19 <- read_csv("data/ecdc.csv") %>%
   left_join(.,jhu) %>% # merge with jhu to get the lat long
   mutate(date = dmy(date)) %>% 
   arrange(date, country) %>% 
+  mutate(population = ifelse(country == "China", 58500000/0.83, population)) %>% #correct pop to reflect hubei
   group_by(country) %>% 
   mutate(cum_cases = cumsum(cases)) %>%
   mutate(cum_deaths = cumsum(deaths)) %>% 
   ungroup() %>% 
-  mutate(country = ifelse(country == "United_States_of_America", "USA",country)) %>%
-  mutate(per_million = round(cum_cases/population*1000000,1)) # per capita
+  mutate(country = ifelse(country == "United_States_of_America", "USA",country)) %>%   # per capita
+  filter(country != "Cases_on_an_international_conveyance_Japan")
 
-
+covid19 <- insert_today(cases = nzcases, deaths = nzdeaths)
+covid19 <- covid19 %>%
+  mutate(per_million = round(cum_cases/population*1000000,1))
 
 latest <- covid19 %>% filter(date == max(date))
 nz <- covid19 %>% filter(country == "New_Zealand")
@@ -135,18 +142,17 @@ Row
 
 # plot nz growth
 #who <- "New Zealand"
-who <- c("New_Zealand", "Australia", "USA", "Italy")
+who <- c("New_Zealand", "Australia", "USA", "Italy", "China", "South_Korea")
 
-p1 <- covid19 %>% filter(country %in% who, cum_cases > 100) %>%
+p1 <- covid19 %>% filter(country %in% who, per_million > 5) %>%
   group_by(country) %>% 
-  mutate(days100 = dense_rank(date)) %>% 
+  mutate(days5 = dense_rank(date)) %>% 
   ungroup() %>%
   #ggplot(aes(x = date, y =cum_cases , colour = country)) +
-  ggplot(aes(x = days100, y = per_million, colour = country)) +
+  ggplot(aes(x = days5, y = per_million, colour = country)) +
   geom_point() +
   geom_line()
-#p1 + theme_economist()+ scale_colour_economist()
-p1 + theme_wsj()+ scale_colour_wsj("colors6")
+p1 + theme_wsj() + scale_colour_wsj()
 
 
 ```
@@ -165,16 +171,35 @@ Column {data-width=400}
 
 #----------------------------------------
 # Plotting the data
-who <- c("New Zealand", "Australia", "USA", "Italy")
-p2 <- covid19 %>% filter(country %in% who) %>% 
-  ggplot(aes(x = date, y = cases, fill = country)) +
-  geom_bar(stat="identity", position = "dodge")
-p2 + theme_wsj()+ scale_colour_wsj("colors6")
+who <- c("New_Zealand", "Australia", "USA", "Italy", "China", "South_Korea")
+p2 <- covid19 %>% filter(country %in% who , cum_cases > 0) %>%
+  group_by(country) %>% 
+  mutate(days = dense_rank(date)) %>% 
+  ungroup() %>% 
+  ggplot(aes(x = days, y = cum_cases, colour = country)) +
+  geom_point() +
+  geom_line() +
+  scale_y_continuous(trans = "log10", 
+                     breaks = trans_breaks("log10",function(x) 10^x), labels = trans_format("log10", math_format(10^.x)))
+
+p2
+p2 + theme_wsj(color = "gray") + scale_colour_wsj("colors6")
+
 ```
  
-### **Cases distribution by type**
+### **Daily Cases**
 
-```{r daily_summary, eval = F}
+```{r}
+who <- c("New_Zealand", "Australia", "USA", "Italy", "China", "South_Korea")
+p3 <- covid19 %>% filter(cum_cases > 360) %>%
+  arrange(cum_cases) %>% 
+  ggplot(aes(x = date, y = country, fill = cases)) + 
+  geom_tile(colour = "lightgray") + 
+  scale_fill_gradient(low = "orange", high = "orangered4")
+
+p3 + theme_wsj(color = "gray", ) + scale_colour_wsj("colors6") + 
+  theme(axis.text.y = element_text(size = 5)) 
+
 
 ```
 
