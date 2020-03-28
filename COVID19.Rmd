@@ -68,7 +68,7 @@ covid19 <- read_csv("data/ecdc.csv") %>%
   mutate(country = ifelse(country == "United_States_of_America", "USA",country)) %>%   # per capita
   filter(country != "Cases_on_an_international_conveyance_Japan")
 
-covid19 <- insert_today(cases = nzcases, deaths = nzdeaths)
+#covid19 <- insert_today(cases = nzcases, deaths = nzdeaths)
 covid19 <- covid19 %>%
   mutate(per_million = round(cum_cases/population*1000000,1)) %>% 
   mutate(daily_million = round(cases/population*100000,3))
