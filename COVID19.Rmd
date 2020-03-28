@@ -192,8 +192,9 @@ p1 <- covid19 %>% filter(country %in% who, per_million > 5) %>%
   ggtitle("Per Capita Cumulative Cases\n days since 5/million") +
   xlab("Days") + ylab("Cases\n(per Million People)")
 
-p1 + theme_bw()
-
+p1 + theme_bw() + scale_colour_brewer(palette = "Set1") +
+  theme(legend.position="bottom")
+#p1 + theme_bw() + scale_colour_brewer(palette = "Dark2")
 
 ```
 
@@ -224,7 +225,7 @@ p2 <- covid19 %>% filter(country %in% who , cum_cases > 0) %>%
   ggtitle("Cumulative Cases (log scale)\n days since 1st case") +
   xlab("Days") + ylab("Cumulative Cases")
 
-p2 + theme_bw()
+p2 + theme_bw() + scale_colour_brewer(palette = "Set1") + theme(legend.position="bottom")
 
 ```
  
@@ -247,9 +248,9 @@ p3 <- covid19 %>% filter(country %in% who$country) %>%
   xlab("Days") + ylab("Cases/Million")
  
 
-p3 + #theme_wsj(color = "gray", ) + scale_colour_wsj() + 
-  theme_bw() + 
-  theme(axis.text.y = element_text(size = 5)) 
+p3 + theme_bw() + scale_colour_brewer(palette = "Oranges") +
+  theme(axis.text.y = element_text(size = 5)) +
+  theme(legend.position="bottom")
 
 
 ```
