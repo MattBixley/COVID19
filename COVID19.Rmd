@@ -76,8 +76,6 @@ covid19 <- covid19 %>%
 # need to add a time limiting function here for europe update
 latest <- covid19 %>% filter(date == max(date))
 nz <- covid19 %>% filter(country == "New_Zealand")
-usa <- covid19 %>% filter(country == "USA")
-italy <- covid19 %>% filter(country == "Italy")
 
 ```
 
@@ -181,20 +179,25 @@ When comparisons first began, Hubei province and subsequently South Korea, Italy
 
 # plot nz growth
 #who <- "New Zealand"
-who <- c("New_Zealand", "Australia", "USA", "Italy", "China", "South_Korea")
+who <- c("New_Zealand", "Australia", "USA", "Italy", "China", "South_Korea", "Spain", "France", "Germany", "United_Kingdom")
 
-p1 <- covid19 %>% filter(country %in% who, per_million > 5) %>%
+fiveper <-  covid19 %>% filter(country %in% who, per_million > 5) %>%
   group_by(country) %>% 
-  mutate(days5 = dense_rank(date)) %>%
+  mutate(days5 = dense_rank(date))
+fivenz <- fiveper %>% filter(country == "New_Zealand")
+
+
+p1 <- fiveper %>% 
   ggplot(aes(x = days5, y = per_million, colour = country)) +
   geom_point() +
   geom_line() +
   ggtitle("Per Capita Cumulative Cases\n days since 5/million") +
-  xlab("Days") + ylab("Cases\n(per Million People)")
+  xlab("Days") + ylab("Cases\n(per Million People)") +
+  geom_point(data = fivenz, aes(x = days5, y = per_million, colour = country), size = 3) +
+  geom_line(data = fivenz, aes(x = days5, y = per_million, colour = country), size = 1.5)
 
-p1 + theme_bw() + scale_colour_brewer(palette = "Set1") +
+p1 + theme_bw() + scale_colour_brewer(palette = "Paired") +
   theme(legend.position="bottom")
-#p1 + theme_bw() + scale_colour_brewer(palette = "Dark2")
 
 ```
 
@@ -212,33 +215,41 @@ Column {data-width=400}
 
 #----------------------------------------
 # Plotting the data
-who <- c("New_Zealand", "Australia", "USA", "Italy", "China", "South_Korea")
-p2 <- covid19 %>% filter(country %in% who , cum_cases > 0) %>%
+who <- c("New_Zealand", "Australia", "USA", "Italy", "China", "South_Korea", "Spain", "France", "Germany", "United_Kingdom")
+
+dayssince <- covid19 %>% filter(country %in% who , cum_cases > 0) %>%
   group_by(country) %>% 
-  mutate(days = dense_rank(date)) %>% 
-  ungroup() %>% 
+  mutate(days = dense_rank(date))
+
+daysnz <- dayssince %>% filter(country == "New_Zealand")
+
+p2 <- dayssince %>% 
   ggplot(aes(x = days, y = cum_cases, colour = country)) +
   geom_point() +
   geom_line() +
+  geom_point(data = daysnz, aes(x = days, y = cum_cases, colour = country), size = 3) +
+  geom_line(data = daysnz, aes(x = days, y = cum_cases, colour = country), size = 1.5) +
+  
   scale_y_continuous(trans = "log10", 
                      breaks = trans_breaks("log10",function(x) 10^x), labels = trans_format("log10", math_format(10^.x))) +
   ggtitle("Cumulative Cases (log scale)\n days since 1st case") +
   xlab("Days") + ylab("Cumulative Cases")
 
-p2 + theme_bw() + scale_colour_brewer(palette = "Set1") + theme(legend.position="bottom")
+p2 + theme_bw() + scale_colour_brewer(palette = "Paired") + theme(legend.position="bottom")
 
 ```
  
 ### **Daily Cases** plot needs work  
 
 ```{r}
-who <- c("New_Zealand", "Australia", "USA", "Italy", "China", "South_Korea")
+who <- c("New_Zealand", "Australia", "USA", "Italy", "China", "South_Korea", "Spain", "France", "Germany", "United_Kingdom")
 
-who <- covid19 %>% filter(cum_cases > 400) %>% 
-  select(country) %>% 
-  distinct()
+#who <- covid19 %>% filter(cum_cases > 400) %>% 
+#  select(country) %>% 
+#  distinct()
 
-p3 <- covid19 %>% filter(country %in% who$country) %>%
+#p3 <- covid19 %>% filter(country %in% who$country) %>%
+p3 <- covid19 %>% filter(country %in% who) %>%
   #mutate(daily_million = ifelse(daily_million == 0, NA, daily_million)) %>% 
   ggplot(aes(x = date, y = country, fill = daily_million)) + 
   geom_tile(colour = "white") + 
@@ -249,7 +260,7 @@ p3 <- covid19 %>% filter(country %in% who$country) %>%
  
 
 p3 + theme_bw() + scale_colour_brewer(palette = "Oranges") +
-  theme(axis.text.y = element_text(size = 5)) +
+  theme(axis.text.y = element_text(size = 12)) +
   theme(legend.position="bottom")
 
 
