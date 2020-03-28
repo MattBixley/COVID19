@@ -288,7 +288,7 @@ I have a shiny app to deploy here soon
 
 This Coronavirus dashboard provides an overview of the 2019/20 Novel Coronavirus COVID-19 (2019-nCoV) epidemic for New Zealand. This dashboard is built with R using the R Makrdown framework with Flexadashboard. Think of it as a living thing, it will change, like the change of going into a minimum of a month long lockdown. The data will not match that presented each day at 1pm (at the moment), there are differences in how data is reported by various sources, perhaps in time I will switch to the [Ministry of Health](https://www.health.govt.nz/our-work/diseases-and-conditions/covid-19-novel-coronavirus) for the New Zealand Data.
 
-note: I have waited longer to share, but Greig Hamilton is impatient. Some of his work that I helped on can be found [here](http://www.rogaine-results.com/) not that he'd ever give me dredit for it.
+note: I have waited longer to share, but Greig Hamilton is impatient. Some of his work that I helped on can be found [here](http://www.rogaine-results.com/) not that he'd ever give me credit for it.
 
 **Code**
 
