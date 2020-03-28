@@ -26,14 +26,11 @@ font-size: 20px;
 library(flexdashboard)
 library(tidyverse)
 library(lubridate)
-library(ggthemes)
 library(scales)
-
-#theme_set(theme_bw)
 
 #------------------ Parameters ------------------
 # cases today
-nzcases = 0
+nzcases = 83
 nzdeaths = 0 
 
 #------------------ Data ------------------
@@ -71,10 +68,12 @@ covid19 <- read_csv("data/ecdc.csv") %>%
   mutate(country = ifelse(country == "United_States_of_America", "USA",country)) %>%   # per capita
   filter(country != "Cases_on_an_international_conveyance_Japan")
 
-#covid19 <- insert_today(cases = nzcases, deaths = nzdeaths)
+covid19 <- insert_today(cases = nzcases, deaths = nzdeaths)
 covid19 <- covid19 %>%
-  mutate(per_million = round(cum_cases/population*1000000,1))
+  mutate(per_million = round(cum_cases/population*1000000,1)) %>% 
+  mutate(daily_million = round(cases/population*100000,3))
 
+# need to add a time limiting function here for europe update
 latest <- covid19 %>% filter(date == max(date))
 nz <- covid19 %>% filter(country == "New_Zealand")
 usa <- covid19 %>% filter(country == "USA")
@@ -92,7 +91,8 @@ Updates likely 9am NZDT with the over night European data. Just after 1pm NZDT w
 ![](images/2019_nCoV.png){ width=100% }
 
 **Saturday March 28th** (d3)  
-
+Strength, Run, Walk and moved gear into the new walkin wardrobe  
+Bullied to share this link.
 
 **Friday March 27th** (d2)  
 Got this dashboard underway  
@@ -165,11 +165,18 @@ valueBox(
 ```
 
 
-Row
------------------------------------------------------------------------
+Column {data-width=400}
+-------------------------------------
 
-### **Daily cumulative cases by type** (New Zealand only)
-    
+### **Notes**  
+Modifying the typical plot of cumulative cases per country, either log or raw scale, to adjust for population. Why?  
+
+When comparisons first began, Hubei province and subsequently South Korea, Italy, Spain, Germany and France all have populations of approximtaley 60 Million people and arguably similar standards of living and health care. New Zealand though is an ordr of magnitude lower and the US nearly an order higher. In simple terms, New Zealand has far less hospital capacity and the US far higher as an absolute value. So absolute values are not interesting, adjusting for population size is.  
+
+*I still need to tidy the plot.*  
+  
+### **Daily Per Capita Cases**  
+
 ```{r}
 
 # plot nz growth
@@ -178,18 +185,19 @@ who <- c("New_Zealand", "Australia", "USA", "Italy", "China", "South_Korea")
 
 p1 <- covid19 %>% filter(country %in% who, per_million > 5) %>%
   group_by(country) %>% 
-  mutate(days5 = dense_rank(date)) %>% 
-  ungroup() %>%
-  #ggplot(aes(x = date, y =cum_cases , colour = country)) +
+  mutate(days5 = dense_rank(date)) %>%
   ggplot(aes(x = days5, y = per_million, colour = country)) +
   geom_point() +
-  geom_line()
-p1 + theme_wsj() + scale_colour_wsj()
+  geom_line() +
+  ggtitle("Per Capita Cumulative Cases\n days since 5/million") +
+  xlab("Days") + ylab("Cases\n(per Million People)")
+
+p1 + theme_bw()
 
 
 ```
 
-**Comparison**
+**Plots**
 =======================================================================
 
 
@@ -197,7 +205,7 @@ Column {data-width=400}
 -------------------------------------
 
 
-### **Daily new cases**
+### **Cumulative Cases**
     
 ```{r}
 
@@ -212,23 +220,35 @@ p2 <- covid19 %>% filter(country %in% who , cum_cases > 0) %>%
   geom_point() +
   geom_line() +
   scale_y_continuous(trans = "log10", 
-                     breaks = trans_breaks("log10",function(x) 10^x), labels = trans_format("log10", math_format(10^.x)))
+                     breaks = trans_breaks("log10",function(x) 10^x), labels = trans_format("log10", math_format(10^.x))) +
+  ggtitle("Cumulative Cases (log scale)\n days since 1st case") +
+  xlab("Days") + ylab("Cumulative Cases")
 
-p2 + theme_wsj(color = "gray") + scale_colour_wsj("colors6")
+p2 + theme_bw()
 
 ```
  
-### **Daily Cases**
+### **Daily Cases** plot needs work  
 
 ```{r}
 who <- c("New_Zealand", "Australia", "USA", "Italy", "China", "South_Korea")
-p3 <- covid19 %>% filter(cum_cases > 360) %>%
-  arrange(cum_cases) %>% 
-  ggplot(aes(x = date, y = country, fill = cases)) + 
-  geom_tile(colour = "lightgray") + 
-  scale_fill_gradient(low = "orange", high = "orangered4")
 
-p3 + theme_wsj(color = "gray", ) + scale_colour_wsj() + 
+who <- covid19 %>% filter(cum_cases > 400) %>% 
+  select(country) %>% 
+  distinct()
+
+p3 <- covid19 %>% filter(country %in% who$country) %>%
+  #mutate(daily_million = ifelse(daily_million == 0, NA, daily_million)) %>% 
+  ggplot(aes(x = date, y = country, fill = daily_million)) + 
+  geom_tile(colour = "white") + 
+  scale_fill_gradient(low = "white", high = "orangered4", 
+                      name = "Per Million") +
+  ggtitle("Per Capita Case Incidence \n days since 5 cases/million") +
+  xlab("Days") + ylab("Cases/Million")
+ 
+
+p3 + #theme_wsj(color = "gray", ) + scale_colour_wsj() + 
+  theme_bw() + 
   theme(axis.text.y = element_text(size = 5)) 
 
 
@@ -255,16 +275,27 @@ Map Coming Soon
 ```
 
 
+**Epidemiology**
+=======================================================================
+
+I have a shiny app to deploy here soon
+
+
 **About**
 =======================================================================
 
 **The Coronavirus Dashboard: the case of New Zealand**
 
-This Coronavirus dashboard: the case of New Zealand provides an overview of the 2019 Novel Coronavirus COVID-19 (2019-nCoV) epidemic for New Zealand. This dashboard is built with R using the R Makrdown framework and with Flexadashboard.
+This Coronavirus dashboard provides an overview of the 2019/20 Novel Coronavirus COVID-19 (2019-nCoV) epidemic for New Zealand. This dashboard is built with R using the R Makrdown framework with Flexadashboard. Think of it as a living thing, it will change, like the change of going into a minimum of a month long lockdown. The data will not match that presented each day at 1pm (at the moment), there are differences in how data is reported by various sources, perhaps in time I will switch to the [Ministry of Health](https://www.health.govt.nz/our-work/diseases-and-conditions/covid-19-novel-coronavirus) for the New Zealand Data.
+
+note: I have waited longer to share, but Greig Hamilton is impatient. Some of his work that I helped on can be found [here](http://www.rogaine-results.com/) not that he'd ever give me dredit for it.
 
 **Code**
 
 The code behind this dashboard is available on [GitHub](https://github.com/mattbixley/covid19){target="_blank"}.
+
+The original layout and first use of data came from [Rami Krispin](https://github.com/RamiKrispin/coronavirus_dashboard){target="_blank"} who created both a dashboard and a package with the Johns Hopkins Data [![](images/coronavirus.png){ width=3%}](https://github.com/RamiKrispin/coronavirus){target="_blank"}
+
 
 **Data**
 
@@ -274,7 +305,7 @@ The input data for this dashboard is the dataset available from the
 The data and dashboard are refreshed on a daily basis.
 
 Some data is also pulled from the Johns Hopkins University Center for Systems Science and Engineering (JHU CCSE) Coronavirus [repository](https://github.com/CSSEGISandData/COVID-19){target="_blank"}.
-But I find them late to update due to time zone differences.
+But I find that is late to update due to time zone differences.
 
 **Contact**
 
