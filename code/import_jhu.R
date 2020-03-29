@@ -1,4 +1,4 @@
-# Johns Hiopkins Dataset
+# Johns Hopkins Dataset
 
 jhu_confirmed <- paste("https://raw.githubusercontent.com/CSSEGISandData/", 
                        "COVID-19/master/csse_covid_19_data/", "csse_covid_19_time_series/", 
@@ -12,6 +12,7 @@ jhu_deaths <- paste("https://raw.githubusercontent.com/CSSEGISandData/",
 download.file(url = jhu_confirmed, destfile = "data/jhu_confirmed.csv")
 download.file(url = jhu_deaths, destfile = "data/jhu_deaths.csv")
 
+# read the data
 jhu_cases <- read_csv(jhu_confirmed) %>% rename(state = "Province/State", country = "Country/Region") %>% 
   pivot_longer(-c(state, country, Lat, Long), names_to = "Date", values_to = "cumulative_cases") %>% 
   mutate(Date = mdy(Date)) %>%
@@ -46,3 +47,16 @@ deaths <- read_csv(jhu_deaths) %>% rename(state = "Province/State", country = "C
   # clean up the NA and negative values
   mutate(country_deaths = ifelse(country_deaths < 0, 0, country_deaths)) %>% 
   mutate(deaths = ifelse(is.na(deaths), 0, deaths ))
+
+
+jhu_lat <- read_csv(jhu_confirmed) %>% 
+  rename(country = "Country/Region") %>%
+  map_df(str_replace_all, pattern = " ", replacement = "_") %>% 
+  mutate(country = ifelse(country == "Taiwan*", "Taiwan",country)) %>%
+  mutate(country = ifelse(country == "Korea,_South", "South_Korea",country)) %>%
+  mutate(country = ifelse(country == "US", "United_States_of_America",country)) %>%
+  group_by(country) %>% # hack to get just one copy of country
+  mutate(first = rank(country)) %>% 
+  filter(first == 1) %>%
+  select(country, Lat, Long)
+

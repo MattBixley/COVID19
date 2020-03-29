@@ -34,47 +34,20 @@ nzcases = 63
 nzdeaths = 1 
 
 #------------------ Data ------------------
-source("code/import_jhu.R")
-source("code/insert_today.R")
+#source("code/import_jhu.R")
 #source("code/population.R")
 
-# read the jhu set for the lat/long
-jhu_confirmed <- "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"
-jhu <- read_csv(jhu_confirmed) %>% 
-  rename(country = "Country/Region") %>%
-  map_df(str_replace_all, pattern = " ", replacement = "_") %>% 
-  mutate(country = ifelse(country == "Taiwan*", "Taiwan",country)) %>%
-  mutate(country = ifelse(country == "Korea,_South", "South_Korea",country)) %>%
-  mutate(country = ifelse(country == "US", "United_States_of_America",country)) %>%
-  group_by(country) %>% # hack to get just one copy of country
-  mutate(first = rank(country)) %>% 
-  filter(first == 1) %>%
-  select(country, Lat, Long)
+# read and tidy the ecdc data
+source("code/import_ecdc.R")
 
-# Import from the European CDC
-ecdc_url <- "https://opendata.ecdc.europa.eu/covid19/casedistribution/csv/"
-download.file(url = ecdc_url, destfile = "data/ecdc.csv")
+# function to add the latest NZ data
+source("code/insert_today.R")
 
-covid19 <- read_csv("data/ecdc.csv") %>% 
-  rename(date = "dateRep", country = "countriesAndTerritories", population = "popData2018") %>% 
-  left_join(.,jhu) %>% # merge with jhu to get the lat long
-  mutate(date = dmy(date)) %>% 
-  arrange(date, country) %>% 
-  mutate(population = ifelse(country == "China", 58500000/0.83, population)) %>% #correct pop to reflect hubei
-  group_by(country) %>% 
-  mutate(cum_cases = cumsum(cases)) %>%
-  mutate(cum_deaths = cumsum(deaths)) %>% 
-  ungroup() %>% 
-  mutate(country = ifelse(country == "United_States_of_America", "USA",country)) %>%   # per capita
-  filter(country != "Cases_on_an_international_conveyance_Japan")
+# don't run the insert code if it morning, ie ecdc updated overnight
+ifelse(format(Sys.time(), "%H:%M") < "13:00", 
+       covid19,
+       covid19 <- insert_today(nzcases = nzcases, nzdeaths = nzdeaths))
 
-#covid19 <- insert_today(cases = nzcases, deaths = nzdeaths)
-covid19 <- covid19 %>%
-  mutate(per_million = round(cum_cases/population*1000000,1)) %>% 
-  mutate(daily_million = round(cases/population*100000,3))
-
-# need to add a time limiting function here for europe update
-latest <- covid19 %>% filter(date == max(date))
 nz <- covid19 %>% filter(country == "New_Zealand")
 
 ```
@@ -171,7 +144,7 @@ valueBox(
 ```
 
 
-Column {data-width=100}
+Column {data-width=400}
 -------------------------------------
 
 ### **Notes**  
@@ -261,7 +234,7 @@ who <- c("New_Zealand", "Australia", "USA", "Italy", "China", "South_Korea", "Sp
 #p3 <- covid19 %>% filter(country %in% who$country) %>%
 p3 <- covid19 %>% filter(country %in% who) %>%
   #mutate(daily_million = ifelse(daily_million == 0, NA, daily_million)) %>% 
-  ggplot(aes(x = date, y = country, fill = daily_million)) + 
+  ggplot(aes(x = date, y = country, fill = cases_million)) + 
   geom_tile(colour = "white") + 
   scale_fill_gradient(low = "white", high = "orangered4", 
                       name = "Per Million") +
