@@ -88,6 +88,14 @@ Updates likely 9am NZDT with the over night European data. Just after 1pm NZDT w
 
 ![](images/2019_nCoV.png){ width=100% }
 
+**Sunday March 29th** (d4)  
+Home Loop which means Flagstaff with Ann. Stunning day out. Not sure how many times I've done this loop over the years. It's a lot though and when training is my test piece to see how fit I am. 13k with 600m climb, pb around 69 minutes but who knows, I'm older and senile now.   
+
+![Flagstaff](images/homeloop.jpg){ width=100% }
+
+
+Moved into the extension, tidied up some plots and over plotted NZ for clarity. Still not happy with how they look, will insert some blow ups to see NZ a bit better. Short story, the curve is flattening.  
+
 **Saturday March 28th** (d3)  
 Strength, Run, Walk and moved gear into the new walkin wardrobe  
 Bullied to share this link.
@@ -169,7 +177,9 @@ Column {data-width=400}
 ### **Notes**  
 Modifying the typical plot of cumulative cases per country, either log or raw scale, to adjust for population. Why?  
 
-When comparisons first began, Hubei province and subsequently South Korea, Italy, Spain, Germany and France all have populations of approximtaley 60 Million people and arguably similar standards of living and health care. New Zealand though is an ordr of magnitude lower and the US nearly an order higher. In simple terms, New Zealand has far less hospital capacity and the US far higher as an absolute value. So absolute values are not interesting, adjusting for population size is.  
+When comparisons first began, Hubei province and subsequently South Korea, Italy, Spain, Germany and France all have populations of approximtaley 60 Million people and arguably similar standards of living and health care. New Zealand though is an order of magnitude lower and the US nearly an order higher. In simple terms, New Zealand has far less hospital capacity and the US far higher as an absolute value. So absolute values are not interesting, adjusting for population size is. 
+
+edit: there is a discrepency with MOH data because or some reason they have decided to report probable cases when no one else does. For consistency the data reverts to that reported by the ECDC.  
 
 *I still need to tidy the plot.*  
   
