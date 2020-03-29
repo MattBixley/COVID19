@@ -30,8 +30,8 @@ library(scales)
 
 #------------------ Parameters ------------------
 # cases today
-nzcases = 83
-nzdeaths = 0 
+nzcases = 63
+nzdeaths = 1 
 
 #------------------ Data ------------------
 source("code/import_jhu.R")
@@ -68,7 +68,7 @@ covid19 <- read_csv("data/ecdc.csv") %>%
   mutate(country = ifelse(country == "United_States_of_America", "USA",country)) %>%   # per capita
   filter(country != "Cases_on_an_international_conveyance_Japan")
 
-#covid19 <- insert_today(cases = nzcases, deaths = nzdeaths)
+covid19 <- insert_today(cases = nzcases, deaths = nzdeaths)
 covid19 <- covid19 %>%
   mutate(per_million = round(cum_cases/population*1000000,1)) %>% 
   mutate(daily_million = round(cases/population*100000,3))
@@ -132,8 +132,8 @@ Row {data-width=400}
 ```{r}
 #valueBox(value, subtitle, icon = NULL, color = "aqua", width = 4,href = NULL)
 valueBox(
-  value = paste(format(max(nz$cum_cases), big.mark = ","), "", sep = " "),
-  caption = "Total confirmed cases",
+  value = paste0(max(nz$cum_cases)," / ",max(nz$cum_deaths)),
+  caption = "Cases / Deaths",
   icon = "fas fa-user-md",
   color = "silver"
 )
@@ -144,7 +144,7 @@ valueBox(
 
 ```{r}
 valueBox(
-  value = paste(format(max(nz$per_million), big.mark = ","), "", sep = " "),
+  value = max(nz$per_million),
   caption = "Cases per million",
   icon = "fas fa-user-md",
   color = "silver"
