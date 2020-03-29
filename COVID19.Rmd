@@ -68,7 +68,7 @@ covid19 <- read_csv("data/ecdc.csv") %>%
   mutate(country = ifelse(country == "United_States_of_America", "USA",country)) %>%   # per capita
   filter(country != "Cases_on_an_international_conveyance_Japan")
 
-covid19 <- insert_today(cases = nzcases, deaths = nzdeaths)
+#covid19 <- insert_today(cases = nzcases, deaths = nzdeaths)
 covid19 <- covid19 %>%
   mutate(per_million = round(cum_cases/population*1000000,1)) %>% 
   mutate(daily_million = round(cases/population*100000,3))
@@ -171,7 +171,7 @@ valueBox(
 ```
 
 
-Column {data-width=400}
+Column {data-width=100}
 -------------------------------------
 
 ### **Notes**  
@@ -265,7 +265,7 @@ p3 <- covid19 %>% filter(country %in% who) %>%
   geom_tile(colour = "white") + 
   scale_fill_gradient(low = "white", high = "orangered4", 
                       name = "Per Million") +
-  ggtitle("Per Capita Case Incidence \n days since 5 cases/million") +
+  ggtitle("Per Capita Case Incidence") +
   xlab("Days") + ylab("Cases/Million")
  
 
