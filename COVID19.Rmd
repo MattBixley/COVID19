@@ -215,8 +215,8 @@ plotdata <- covid19 %>% filter(country %in% who, cases_million < 2000, cases > 0
 p4 <-  plotdata %>% 
  
   ggplot(aes(x = per_million, y = cases_million, group = country)) +
-  geom_point(col = "grey10") +
-  geom_line(col = "grey10") +
+  geom_point(col = "grey30", alpha = 0.3) +
+  geom_line(col = "grey30", alpha = 0.3) +
   labs(title = "Beating the Curve",
        subtitle = "When restrictions take affect",
        x = "log of Cumulative Cases\n(per Million)", y = "log of Daily Cases\n(per Million)") +
@@ -226,11 +226,11 @@ p4 <-  plotdata %>%
   #geom_point(data = plotdata %>% filter(date == max(date)), 
   #           aes(x = per_million, y = cases_million)) +
   geom_text(data =  plotdata %>% filter(date == max(date)), 
-            aes(label=country),hjust=0, vjust=0, size = 3, colour = "blue") +
+            aes(label=country),hjust=0, vjust=0, size = 3, size = 3, colour = "blue") +
 
   # overplot NZ
-  geom_point(data = nzdat, aes(x = per_million, y = cases_million), size = 3, colour = "red") +
-  geom_line(data = nzdat, aes(x = per_million, y = cases_million), size = 1.5, colour = "red") +
+  geom_point(data = nzdat, aes(x = per_million, y = cases_million), size = 3, colour = "red", alpha = 0.5) +
+  geom_line(data = nzdat, aes(x = per_million, y = cases_million), size = 1.5, colour = "red", alpha = 0.5) +
   geom_text(data = nzdat %>% filter(date == max(date)), aes(label=country),hjust=0, vjust=0, size = 5, colour = "red") +
   
   # log scales
@@ -323,10 +323,11 @@ p3 <- covid19 %>% filter(country %in% who) %>%
   xlab("Days") + ylab("Cases/Million")
  
 
-p3 + mytheme + labs(caption = "Matt Bixley") +  scale_colour_brewer(palette = "Oranges") +
+p3 + mytheme + labs(caption = "Matt Bixley") + 
+  scale_fill_gradient(low = "#FFF5EB", high = "#D94801") +
+  #scale_colour_brewer(palette = "Oranges") +
   theme(panel.grid.major.y = element_blank()) + 
   theme(panel.grid.minor.x = element_blank())
-
 
 ```
 
@@ -337,17 +338,39 @@ p3 + mytheme + labs(caption = "Matt Bixley") +  scale_colour_brewer(palette = "O
 ### **World map of cases**
 
 
-Map Coming Soon
 ```{r}
-# make a map
-#library(leaflet)
-#library(leafpop)
 
-#map_object %>%
-#  addLayersControl(
-#    overlayGroups = names(cv_data_for_plot.split),
-#    options = layersControlOptions(collapsed = FALSE)
-#  )
+library(sf)
+library(rnaturalearth)
+library(rnaturalearthdata)
+#library(stringr)
+#library(maps)
+
+options(scipen = 999) ## To disable scientific notation
+
+plain <- theme(
+    axis.text = element_blank(),
+    axis.line = element_blank(),
+    axis.ticks = element_blank(),
+    panel.border = element_blank(),
+    panel.grid = element_blank(),
+    axis.title = element_blank(),
+    panel.background = element_rect(fill = "white"),
+    plot.title = element_text(hjust = 0.5),
+    legend.position = "bottom")
+
+world <- ne_countries(scale = "medium", returnclass = "sf")
+
+worldcov <- world %>% inner_join(.,covid19, by = c("su_a3" = "countryterritoryCode")) %>% 
+  filter(per_million < 1500, date == "2020-03-30")
+
+p <- ggplot(data = worldcov) +
+  labs(title = "Golobal Cumulative density of COVID19",
+       fill = "Cumulative Cases\n(per Million)") +
+  geom_sf(aes(fill = per_million)) +
+  scale_fill_gradient(low = "#FDD0A2", high = "#D94801")
+
+p + theme_classic() + plain
 ```
 
 
