@@ -20,6 +20,6 @@ covid19 <- read_csv("data/ecdc.csv") %>%
   
   # calculate some percapita data
   mutate(population = ifelse(country == "China", 58500000/0.83, population)) %>% #correct pop to reflect hubei
-  mutate(per_million = round(cum_cases/population*1000000,1)) %>%  # cumulative per million
-  mutate(cases_million = round(cases/population*1000000,1)) # daily cases per million
+  mutate(per_million = round(cum_cases/population*1000000,3)) %>%  # cumulative per million
+  mutate(cases_million = round(cases/population*1000000,3)) # daily cases per million
 
