@@ -44,6 +44,11 @@ mytheme <- theme_classic() +
   theme(panel.grid.major.x = element_blank()) + #remove the vertical grid lines 
   theme(panel.grid.minor.x = element_blank()) #remove the vertical grid lines
 
+# colours
+low = "#FFF5EB"
+high = "#D94801"
+pal_c = "Oranges"
+pal_d = "Paired"
 
 #------------------ Data ------------------
 #source("code/import_jhu.R")
@@ -196,8 +201,8 @@ p1 <- fiveper %>%
   geom_point(data = fivenz, aes(x = days5, y = per_million, colour = country), size = 3) +
   geom_line(data = fivenz, aes(x = days5, y = per_million, colour = country))
 
-p1 + mytheme + labs(caption = "Matt Bixley") + 
-  scale_colour_brewer(palette = "Paired")
+p1 + mytheme + labs(caption = "Source: ECDC") + 
+  scale_colour_brewer(palette = pal_d)
 ```
 
   
@@ -251,7 +256,7 @@ p4 + theme_classic() +
   theme(axis.line = element_line(colour = "grey50")) + # plot axis to grey
   theme(panel.grid.major = element_line(colour = "grey40", size = 0.4)) + # grid to grey
   theme(panel.grid.minor = element_line(colour = "grey70", size = 0.3)) + # grid to grey
-  labs(caption = "Matt Bixley") + theme(legend.position="none")
+  labs(caption = "Source: ECDC") + theme(legend.position="none")
 
 
 
@@ -273,7 +278,7 @@ Column {data-width=400}
 # Plotting the data
 who <- c("New_Zealand", "Australia", "USA", "Italy", "China", "South_Korea", "Spain", "France", "Germany", "United_Kingdom")
 
-dayssince <- covid19 %>% filter(country %in% who , cum_cases > 0) %>%
+dayssince <- covid19 %>% filter(country %in% who , cum_cases > 100) %>%
   group_by(country) %>% 
   mutate(days = dense_rank(date))
 
@@ -293,19 +298,30 @@ p2 <- dayssince %>%
                                       seq(100, 1000, 250),
                                       seq(1000, 10000, 2500),
                                       seq(10000, 100000, 25000))) +
-  labs(title = "Cumulative Cases", subtitle = "Days since 1st case",
+  labs(title = "Cumulative Cases", subtitle = "Days since 100 cases",
         x = "Days", y = "Cumulative Cases\n(log10") +
   theme(axis.text.y = element_text(size = 4))
 
-p2 + mytheme + labs(caption = "Matt Bixley") + 
-  scale_colour_brewer(palette = "Paired")
+p2 + mytheme + labs(caption = "Source: ECDC") + 
+  scale_colour_brewer(palette = pal_d)
 
 
 ```
  
-### **Daily Cases** plot needs work  
+### **Daily Cases**   
 
-```{r}
+```{r, fig.width=9, fig.height=5, fig.align='center'}
+### NZ Cases Barchart
+p5 <- covid19 %>% 
+  filter(country == "New_Zealand") %>% 
+  ggplot(aes(x = date, y = cases)) +
+  geom_bar(stat = "identity", fill = high, alpha = 0.8) +
+  labs(title = "New Zealand", subtitle = "Cases/Day",
+       y = "Cases", x = "Date")
+
+p5 + mytheme + labs(caption = "Source: ECDC") + theme(legend.position="none")
+
+
 who <- c("New_Zealand", "Australia", "USA", "Italy", "China", "South_Korea", "Spain", "France", "Germany", "United_Kingdom", "Norway")
 
 #who <- covid19 %>% filter(cum_cases > 400) %>% 
@@ -314,18 +330,15 @@ who <- c("New_Zealand", "Australia", "USA", "Italy", "China", "South_Korea", "Sp
 
 #p3 <- covid19 %>% filter(country %in% who$country) %>%
 p3 <- covid19 %>% filter(country %in% who) %>%
-  #mutate(daily_million = ifelse(daily_million == 0, NA, daily_million)) %>% 
   ggplot(aes(x = date, y = country, fill = cases_million)) + 
   geom_tile(colour = "white") + 
-  scale_fill_gradient(low = "white", high = "orangered4", 
-                      name = "Cases per Million") +
+  scale_fill_gradient(low = low, high = high, 
+                      name = "Cases\nper Million") +
   ggtitle("Per Capita Case Incidence") +
   xlab("Days") + ylab("Cases/Million")
  
 
-p3 + mytheme + labs(caption = "Matt Bixley") + 
-  scale_fill_gradient(low = "#FFF5EB", high = "#D94801") +
-  #scale_colour_brewer(palette = "Oranges") +
+p3 + mytheme + labs(caption = "Source: ECDC") + 
   theme(panel.grid.major.y = element_blank()) + 
   theme(panel.grid.minor.x = element_blank())
 
