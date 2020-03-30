@@ -73,6 +73,11 @@ Updates likely 9am NZDT with the over night European data. Just after 1pm NZDT w
 
 ![](images/2019_nCoV.png){ width=100% }
 
+**Monday March 30th** (d5)  
+Several requests for the plots to be interactive. Just a heads up, Plotly and ggiraph both destory the formatting of what are already ugly plots. I hate them, so you're not getting them. In time I'll get to letting you choose your own countries. Turns out no one is patient though. Can't have much else to do at the moment. Lucky for me I am not very smart and everything takes a long time, like simple formating, google is my friend. 
+
+Home D going well toay even if it is wet, still got some strength done and a run along with a solid day of pissing around with data. I don't think I've ever seen so many people looking at so many variations of the same data. I have the prime office desk, adjacent to the fire.
+
 **Sunday March 29th** (d4)  
 Home Loop which means Flagstaff with Ann. Stunning day out. Not sure how many times I've done this loop over the years. It's a lot though and when training is my test piece to see how fit I am. 13k with 600m climb, pb around 69 minutes but who knows, I'm older and senile now.   
 
@@ -166,16 +171,42 @@ When comparisons first began, Hubei province and subsequently South Korea, Italy
 
 There is a discrepency with [MOH](https://www.health.govt.nz/our-work/diseases-and-conditions/covid-19-novel-coronavirus/covid-19-current-situation/covid-19-current-cases) data because for some reason they have decided to report probable cases when no one else does. For consistency the data reverts to that reported by the ECDC overnight.  
 
-The top plot show the log of cases vs cumulative cases, both per capita. All countries follow a similar trajectory, but the goal, with interventions is reduce infectioon by COVID-19. When interventions take effect, with this plot there is a rapid fall in the curve. As opposed to the lower plot where the curve gently flatten off.  
+The top plot show the log of cases vs cumulative cases, both per capita. All countries follow a similar trajectory, but the goal, with interventions is reduce infectioon by COVID-19. When interventions take effect, with this plot there is a rapid fall in the curve. As opposed to the lower plot where the curve gently flattens off.  
 
 
+```{r fig.width=2, fig.height=2, eval=FALSE}
+# plot nz growth
+#who <- "New Zealand"
+who <- c("New_Zealand", "Australia", "USA", "Italy", "China", "South_Korea", "Spain", "France", "Germany", "United_Kingdom")
+fiveper <-  covid19 %>% filter(country %in% who, per_million > 5) %>%
+  group_by(country) %>% 
+  mutate(days5 = dense_rank(date))
+fivenz <- fiveper %>% filter(country == "New_Zealand")
+
+p1 <- fiveper %>% 
+  ggplot(aes(x = days5, y = per_million, colour = country)) +
+  geom_point() +
+  geom_line() +
+  labs(title = "Per Capita Cumulative Cases",
+  subtitle = "days since 5 cases per million",
+  x = "Days", y = "Cases\n(per Million People)") +
+  scale_y_continuous(breaks = seq(0, 10000, 500)) +
+  # overplot NZ
+  geom_point(data = fivenz, aes(x = days5, y = per_million, colour = country), size = 3) +
+  geom_line(data = fivenz, aes(x = days5, y = per_million, colour = country))
+
+p1 + mytheme + labs(caption = "Matt Bixley") + 
+  scale_colour_brewer(palette = "Paired")
+```
+
+  
 ### **Per Capita Cases**  
 
-```{r fig.width=8, fig.height=5, fig.align='center'}
+```{r, fig.width=8, fig.height=8, fig.align='center'}
 # log log of percapita nz growth
 # gganimate, should show fall off in incidence when effective measure take over
 
-who <- c("Australia", "USA", "Italy", "China", "South_Korea", "Spain", "France", "Germany", "United_Kingdom", "Hong_Kong", "Norway", "Singapore")
+who <- c("Australia", "USA", "Italy", "China", "South_Korea", "Spain", "France", "Germany", "United_Kingdom", "Taiwan", "Singapore")
 
 nzdat <- covid19 %>% filter(country == "New_Zealand", cases > 0)
 plotdata <- covid19 %>% filter(country %in% who, cases_million < 2000, cases > 0, population > 4800000)
@@ -191,10 +222,10 @@ p4 <-  plotdata %>%
   
   
   # label the last point
-  geom_point(data = plotdata %>% filter(date == max(date)), 
-             aes(x = per_million, y = cases_million, size = 1, colour = "blue" )) +
+  #geom_point(data = plotdata %>% filter(date == max(date)), 
+  #           aes(x = per_million, y = cases_million)) +
   geom_text(data =  plotdata %>% filter(date == max(date)), 
-            aes(label=country),hjust=0, vjust=0, size = 4, colour = "blue") +
+            aes(label=country),hjust=0, vjust=0, size = 3, colour = "blue") +
 
   # overplot NZ
   geom_point(data = nzdat, aes(x = per_million, y = cases_million), size = 3, colour = "red") +
@@ -221,28 +252,7 @@ p4 + theme_classic() +
   theme(panel.grid.minor = element_line(colour = "grey70", size = 0.3)) + # grid to grey
   labs(caption = "Matt Bixley") + theme(legend.position="none")
 
-# plot nz growth
-#who <- "New Zealand"
-who <- c("New_Zealand", "Australia", "USA", "Italy", "China", "South_Korea", "Spain", "France", "Germany", "United_Kingdom")
-fiveper <-  covid19 %>% filter(country %in% who, per_million > 5) %>%
-  group_by(country) %>% 
-  mutate(days5 = dense_rank(date))
-fivenz <- fiveper %>% filter(country == "New_Zealand")
 
-p1 <- fiveper %>% 
-  ggplot(aes(x = days5, y = per_million, colour = country)) +
-  geom_point() +
-  geom_line() +
-  labs(title = "Per Capita Cumulative Cases",
-  subtitle = "days since 5 cases per million",
-  x = "Days", y = "Cases\n(per Million People)") +
-  scale_y_continuous(breaks = seq(0, 10000, 500)) +
-  # overplot NZ
-  geom_point(data = fivenz, aes(x = days5, y = per_million, colour = country), size = 3) +
-  geom_line(data = fivenz, aes(x = days5, y = per_million, colour = country))
-
-p1 + mytheme + labs(caption = "Matt Bixley") + 
-  scale_colour_brewer(palette = "Paired")
 
 ```
 
@@ -295,7 +305,7 @@ p2 + mytheme + labs(caption = "Matt Bixley") +
 ### **Daily Cases** plot needs work  
 
 ```{r}
-who <- c("New_Zealand", "Australia", "USA", "Italy", "China", "South_Korea", "Spain", "France", "Germany", "United_Kingdom")
+who <- c("New_Zealand", "Australia", "USA", "Italy", "China", "South_Korea", "Spain", "France", "Germany", "United_Kingdom", "Norway")
 
 #who <- covid19 %>% filter(cum_cases > 400) %>% 
 #  select(country) %>% 
@@ -307,7 +317,7 @@ p3 <- covid19 %>% filter(country %in% who) %>%
   ggplot(aes(x = date, y = country, fill = cases_million)) + 
   geom_tile(colour = "white") + 
   scale_fill_gradient(low = "white", high = "orangered4", 
-                      name = "Per Million") +
+                      name = "Cases per Million") +
   ggtitle("Per Capita Case Incidence") +
   xlab("Days") + ylab("Cases/Million")
  
