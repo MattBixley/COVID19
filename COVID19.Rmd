@@ -311,7 +311,7 @@ p2 + mytheme + labs(caption = "Source: ECDC") +
  
 ### **Daily Cases**   
 
-```{r, fig.width=9, fig.height=5, fig.align='center'}
+```{r}
 ### NZ Cases Barchart
 p5 <- covid19 %>% 
   filter(country == "New_Zealand") %>% 
