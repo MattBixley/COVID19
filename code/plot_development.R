@@ -53,15 +53,15 @@ p4 <-  plotdata %>%
   
   
   # label the last point
-  geom_point(data = plotdata %>% filter(date == max(date)), 
-             aes(x = per_million, y = cases_million, size = 1, colour = "blue" )) +
+  geom_point_interactive(data = plotdata %>% filter(date == max(date)), 
+             aes(x = per_million, y = cases_million, size = 1, colour = "blue", tooltip = country)) +
   geom_text(data =  plotdata %>% filter(date == max(date)), 
             aes(label=country),hjust=0, vjust=0, size = 4, colour = "blue") +
 
   # overplot NZ
   geom_point(data = nzdat, aes(x = per_million, y = cases_million), size = 3, colour = "red") +
   geom_line(data = nzdat, aes(x = per_million, y = cases_million), size = 1.5, colour = "red") +
-  geom_text(data = nzdat %>% filter(date == max(date)), aes(label=country),hjust=0, vjust=0, size = 5, colour = "red") +
+  geom_text(data = nzdat %>% filter(date == max(date)), aes(label=country),hjust = 0, vjust = 0, size = 5, colour = "red") +
   
   # log scales
   scale_y_continuous(trans = "log10", breaks = c(0, 1, 10, 100,1000),
@@ -82,3 +82,22 @@ p4 + theme_classic() +
   theme(panel.grid.major = element_line(colour = "grey40", size = 0.4)) + # grid to grey
   theme(panel.grid.minor = element_line(colour = "grey70", size = 0.3)) + # grid to grey
   labs(caption = "Matt Bixley") + theme(legend.position="none")
+
+girafe(ggobj = p4 + theme_classic() + 
+         theme(legend.position=NULL) +
+         theme(axis.line = element_line(colour = "grey50")) + # plot axis to grey
+         theme(panel.grid.major = element_line(colour = "grey40", size = 0.4)) + # grid to grey
+         theme(panel.grid.minor = element_line(colour = "grey70", size = 0.3)) + # grid to grey
+         labs(caption = "Matt Bixley") + theme(legend.position="none")
+)
+
+library(ggplot2)
+library(ggiraph)
+data <- mtcars
+data$carname <- row.names(data)
+
+gg_point = ggplot(data = data) +
+  geom_point_interactive(aes(x = wt, y = qsec, color = disp,tooltip = disp)) + 
+  theme_minimal()
+
+girafe(ggobj = gg_point)
