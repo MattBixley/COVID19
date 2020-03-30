@@ -33,6 +33,7 @@ library(scales)
 nzcases = 76
 nzdeaths = 0 
 
+today = format(Sys.time()-24*60*60, "%Y-%m-%d")
 options("scipen"=100, "digits"=6)
 
 # plot themes
@@ -345,10 +346,13 @@ p3 + mytheme + labs(caption = "Source: ECDC") +
 ```
 
 
-**Map**
+**Maps**
 =======================================================================
 
-### **World map of cases**
+Column {data-width=400}
+-------------------------------------
+
+### **World map**
 
 
 ```{r}
@@ -356,36 +360,41 @@ p3 + mytheme + labs(caption = "Source: ECDC") +
 library(sf)
 library(rnaturalearth)
 library(rnaturalearthdata)
-#library(stringr)
-#library(maps)
-
-options(scipen = 999) ## To disable scientific notation
-
-plain <- theme(
-    axis.text = element_blank(),
-    axis.line = element_blank(),
-    axis.ticks = element_blank(),
-    panel.border = element_blank(),
-    panel.grid = element_blank(),
-    axis.title = element_blank(),
-    panel.background = element_rect(fill = "white"),
-    plot.title = element_text(hjust = 0.5),
-    legend.position = "bottom")
 
 world <- ne_countries(scale = "medium", returnclass = "sf")
 
-worldcov <- world %>% inner_join(.,covid19, by = c("su_a3" = "countryterritoryCode")) %>% 
-  filter(per_million < 1500, date == "2020-03-30")
+worldcov <- world %>% inner_join(.,covid19, by = c("adm0_a3" = "countryterritoryCode")) %>% 
+  filter(per_million < 1500, date == today)
 
-p <- ggplot(data = worldcov) +
-  labs(title = "Golobal Cumulative density of COVID19",
+p6 <- ggplot(data = worldcov) +
+  labs(title = paste0("Global Cumulative COVID19 at ",today),
        fill = "Cumulative Cases\n(per Million)") +
   geom_sf(aes(fill = per_million)) +
   scale_fill_gradient(low = "#FDD0A2", high = "#D94801")
 
-p + theme_classic() + plain
+p6 + mytheme
 ```
 
+### **European map**
+
+```{r}
+### europe plot
+
+europe <- ne_countries(scale = "medium", returnclass = "sf") %>%
+  filter(continent == "Europe")
+
+europecov <- europe %>% inner_join(.,covid19, by = c("adm0_a3" = "countryterritoryCode")) %>% 
+  filter(per_million < 6000, date == today)
+
+p7 <- ggplot(data = europecov) +
+  labs(title = paste0("European Cumulative COVID19 at ",today),
+       fill = "Cumulative Cases\n(per Million)") +
+  geom_sf(aes(fill = per_million)) +
+  scale_fill_gradient(low = "#FDD0A2", high = "#D94801") +
+  coord_sf(xlim = c(-30, 80), ylim = c(35, 85), expand = FALSE) # limits in the sf() object
+
+p7 + mytheme
+```
 
 **Epidemiology**
 =======================================================================

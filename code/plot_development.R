@@ -88,7 +88,7 @@ girafe(ggobj = p4 + theme_classic() +
          theme(axis.line = element_line(colour = "grey50")) + # plot axis to grey
          theme(panel.grid.major = element_line(colour = "grey40", size = 0.4)) + # grid to grey
          theme(panel.grid.minor = element_line(colour = "grey70", size = 0.3)) + # grid to grey
-         labs(caption = "Matt Bixley") + theme(legend.position="none")
+         labs(caption = "Source: ECDC") + theme(legend.position="none")
 )
 
 library(ggplot2)
@@ -101,3 +101,49 @@ gg_point = ggplot(data = data) +
   theme_minimal()
 
 girafe(ggobj = gg_point)
+
+
+### NZ Cases Barchart
+p5 <- covid19 %>% 
+  filter(country == "New_Zealand") %>% 
+  ggplot(aes(x = date, y = cases, fill = "brown")) +
+  geom_bar(stat = "identity", fill = "brown") +
+  labs(title = "New Zealand", subtitle = "Cases/Day",
+       y = "Cases", x = "Date")
+
+p5 + mytheme + labs(caption = "Source: ECDC") + theme(legend.position="none")
+  
+### europe plot
+library(sf)
+library(rnaturalearth)
+library(rnaturalearthdata)
+
+plain <- theme(
+  axis.text = element_blank(),
+  axis.line = element_blank(),
+  axis.ticks = element_blank(),
+  panel.border = element_blank(),
+  panel.grid = element_blank(),
+  axis.title = element_blank(),
+  panel.background = element_rect(fill = "white"),
+  plot.title = element_text(hjust = 0.5),
+  legend.position = "bottom")
+
+today = format(Sys.time()-24*60*60, "%Y-%m-%d")
+
+europe <- ne_countries(scale = "medium", returnclass = "sf") %>%
+  filter(continent == "Europe")
+
+europecov <- europe %>% inner_join(.,covid19, by = c("adm0_a3" = "countryterritoryCode")) %>% 
+  filter(per_million < 6000, date == today)
+
+p6 <- ggplot(data = europecov) +
+  labs(title = "European density of COVID19",
+       fill = "Cumulative Cases at \n(per Million)") +
+  geom_sf(aes(fill = per_million)) +
+  scale_fill_gradient(low = "#FDD0A2", high = "#D94801") +
+  coord_sf(xlim = c(-30, 80), ylim = c(35, 85), expand = FALSE) # limits in the sf() object
+
+p6 + theme_classic() + plain
+
+  
