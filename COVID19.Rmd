@@ -30,7 +30,7 @@ library(scales)
 
 #------------------ Parameters ------------------
 # cases today
-nzcases = 76
+nzcases = 58
 nzdeaths = 0 
 
 today = format(Sys.time()-24*60*60, "%Y-%m-%d")
