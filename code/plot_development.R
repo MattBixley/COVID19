@@ -146,4 +146,77 @@ p6 <- ggplot(data = europecov) +
 
 p6 + theme_classic() + plain
 
+library(tidyverse)  
+library(gganimate)
+
+# log log of percapita nz growth
+# gganimate, should show fall off in incidence when effective measure take over
+
+who <- c("Australia", "USA", "Italy", "China", "South_Korea", "Spain", "France", "Germany", "United_Kingdom", "Taiwan", "Singapore")
+
+nzdat <- covid19 %>% filter(country == "New_Zealand", cases > 0)
+plotdata <- covid19 %>% filter(country %in% who, cases_million < 2000, cases > 0, population > 4800000)
+
+p4 <-  plotdata %>% 
   
+  ggplot(aes(x = per_million, y = cases_million, group = country)) +
+  geom_point(col = "grey30", alpha = 0.3) +
+  geom_line(col = "grey30", alpha = 0.3) +
+  labs(title = "Beating the Curve",
+       subtitle = "When restrictions take affect",
+       x = "log of Cumulative Cases\n(per Million)", y = "log of Daily Cases\n(per Million)") +
+  
+  
+  # label the last point
+  #geom_point(data = plotdata %>% filter(date == max(date)), 
+  #           aes(x = per_million, y = cases_million)) +
+  geom_text(data =  plotdata %>% filter(date == max(date)), 
+            aes(label=country),hjust=0, vjust=0, size = 3, size = 3, colour = "blue") +
+  
+  # overplot NZ
+  geom_point(data = nzdat, aes(x = per_million, y = cases_million), size = 3, colour = "red", alpha = 0.5) +
+  geom_line(data = nzdat, aes(x = per_million, y = cases_million), size = 1.5, colour = "red", alpha = 0.5) +
+  geom_text(data = nzdat %>% filter(date == max(date)), aes(label=country),hjust=0, vjust=0, size = 5, colour = "red") +
+  
+  # log scales
+  scale_y_continuous(trans = "log10", breaks = c(0, 1, 10, 100,1000),
+                     minor_breaks = c(seq(0,1,0.1),
+                                      seq(1,10,1),
+                                      seq(10,100,10),
+                                      seq(100,1000,100))) +
+  scale_x_continuous(trans = "log10", labels = c(0, 10, 100, 1000,10000),
+                     breaks = c(0, 10, 100, 1000,10000),
+                     minor_breaks = c(seq(0, 10,1),
+                                      seq(0, 100, 10),
+                                      seq(100, 1000, 100),
+                                      seq(1000, 10000, 1000)))
+
+p <- p4 + theme_classic() + 
+  theme(legend.position=NULL) +
+  theme(axis.line = element_line(colour = "grey50")) + # plot axis to grey
+  theme(panel.grid.major = element_line(colour = "grey40", size = 0.4)) + # grid to grey
+  theme(panel.grid.minor = element_line(colour = "grey70", size = 0.3)) + # grid to grey
+  labs(caption = "Source: ECDC") + theme(legend.position="none")
+
+
+
+
+
+p + transition_time(per_million) 
+
+
+
+library(gganimate)
+#> Loading required package: ggplot2
+
+# We'll start with a static plot
+p <- ggplot(iris, aes(x = Petal.Width, y = Petal.Length)) + 
+  geom_point()
+
+plot(p)
+anim <- p + 
+  transition_states(Species,
+                    transition_length = 2,
+                    state_length = 1)
+
+anim

@@ -79,6 +79,17 @@ Updates likely 9am NZDT with the over night European data. Just after 1pm NZDT w
 
 ![](images/2019_nCoV.png){ width=100% }
 
+**Tuesday March 31st** (d6)  
+Thought I was going to be late for work, luckily the daily PE I've been doing made the 5 meter dash from bed-desk an easy task. Much like when I was actually fit and the daily 9.5km commute to Invermay from 6am meant that 120-140k per week was straight forward!!!! Note: the run home was brutal when tired, may have used 'phone a friend' at times.  
+Napped, Planks, Kettle Bell Swings and the now standard 30 minute run filled up the afternoon and then dragging out a text book for some light reading.  
+  
+![](images/textbook.jpg){ width=70% }  
+  
+There's a chapter on exponential smoothing but it's not relevant to COVID19. 
+Manchild cooked up a delicous Laksa.  
+
+[![gganimate](images/gganimate.png){ width=20%}](https://github.com/thomasp85/gganimate) didn't work straight off, bugger it.  
+
 **Monday March 30th** (d5)  
 Several requests for the plots to be interactive. Just a heads up, Plotly and ggiraph both destory the formatting of what are already ugly plots. I hate them, so you're not getting them. In time I'll get to letting you choose your own countries. Turns out no one is patient though. Can't have much else to do at the moment. Lucky for me I am not very smart and everything takes a long time, like simple formating, google is my friend. 
 
@@ -430,7 +441,7 @@ But I find that is late to update due to time zone differences.
 
 **Contact**
 
-For any question or feedback, you can email me <mattbixley72@gmail.com> or report an issue at the [GitHub repo](https://github.com/MattBixley/COVID19/issues){target="_blank"}
+For any questions or feedback, you can email me <mattbixley72@gmail.com> or report an issue at the [GitHub repo](https://github.com/MattBixley/COVID19/issues){target="_blank"}
 
 **Update**
 
