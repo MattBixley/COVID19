@@ -1,0 +1,59 @@
+### function to insert todays values for NZ
+
+insert_today <- function(nzcases = 0, nzdeaths = 0){
+  insert <- covid19 %>% filter(country == "New_Zealand", date == max(date)) %>% 
+
+    # add date values
+    mutate(date = date + 1) %>% 
+    mutate(day = day(date), month = month(date), year = year(date)) %>% 
+    
+    # add the cases
+    mutate(cases = nzcases, deaths = nzdeaths) %>% 
+    mutate(cum_cases = cum_cases + nzcases, cum_deaths = cum_deaths + nzdeaths) %>% 
+    mutate(per_million = round(cum_cases/population*1000000,1)) %>%
+    mutate(cases_million = round(cases/population*1000000,1))
+  
+
+  
+  newcovid <- rbind(covid19, insert) %>% 
+  arrange(date, country)
+  return(newcovid)
+}
+
+#covid19 <- insert_today(cases = 85, deaths = 0) %>% filter(country == "New_Zealand")
+
+
+### import the MOH data directly to add to the ECDC dataset
+nz_moh <- "https://www.health.govt.nz/our-work/diseases-and-conditions/covid-19-novel-coronavirus/covid-19-current-situation/covid-19-current-cases/covid-19-current-cases-details"
+
+library(rvest)
+library(xml2)
+library(lubridate)
+
+nz_moh_cases <- read_html(nz_moh) %>%
+  html_nodes("table") %>%
+  html_table(fill=TRUE) %>%
+  .[[1]] %>% 
+  mutate(cases = "confirmed")
+
+nz_moh_probable <- read_html(nz_moh) %>%
+  html_nodes("table") %>%
+  html_table(fill=TRUE) %>%
+  .[[2]] %>% 
+  mutate(cases = "probable")
+
+
+nz_moh <- bind_rows(nz_moh_cases, nz_moh_probable) %>% 
+  rename(date = "Date of report", last_country = "Last country before return", flight = "Flight number",
+         flight_date = "Arrival date", age_group = "Age group", travel = "International travel", 
+         flight_dep_date = "Flight departure date") %>% 
+  mutate(date = dmy(date), flight_dep_date = dmy(flight_dep_date), flight_date = dmy(flight_date)) %>% 
+  arrange(date)
+
+write_csv(nz_moh, "data/nz_moh.csv")
+
+nz_moh_short <- nz_moh %>% 
+  count(date) %>% 
+  mutate(cum_cases = cumsum(n)) %>% 
+  rename(cases = "n")
+ 
