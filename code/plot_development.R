@@ -220,3 +220,12 @@ anim <- p +
                     state_length = 1)
 
 anim
+
+
+# 2 day average
+library(slider)
+covid19 %>% filter(country == "Australia") %>% 
+  mutate(cases3 = slide_dbl(cases, mean, .before = 2)) %>% 
+  select(country, date, cases, cases3) %>% 
+  ggplot(aes(x = date, y = cases3)) +
+  geom_bar(stat = "identity")

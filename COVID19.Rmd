@@ -30,7 +30,7 @@ library(scales)
 
 #------------------ Parameters ------------------
 # cases today
-nzcases = 58
+nzcases = 61
 nzdeaths = 0 
 
 today = format(Sys.time()-24*60*60, "%Y-%m-%d")
@@ -155,7 +155,6 @@ valueBox(
 )
 ```
 
-
 ### active {.value-box}
 
 ```{r}
@@ -183,16 +182,17 @@ Column {data-width=600}
 
 
 ### **Notes**  
+March 31st - The ECDC appear to have updated NZ data to match that of the Ministry of Health by applying an extra 40ish cases to the day.
+
 Modifying the typical plot of cumulative cases per country, either log or raw scale, to adjust for population. Why?  
 
 When comparisons first began, Hubei province and subsequently South Korea, Italy, Spain, Germany and France all have populations of approximtaley 60 Million people and arguably similar standards of living and health care. New Zealand though is an order of magnitude lower and the US nearly an order higher. In simple terms, New Zealand has far less hospital capacity and the US far higher as an absolute value. So absolute values are not interesting, adjusting for population size is. 
 
 There is a discrepency with [MOH](https://www.health.govt.nz/our-work/diseases-and-conditions/covid-19-novel-coronavirus/covid-19-current-situation/covid-19-current-cases) data because for some reason they have decided to report probable cases when no one else does. For consistency the data reverts to that reported by the ECDC overnight.  
 
-The top plot show the log of cases vs cumulative cases, both per capita. All countries follow a similar trajectory, but the goal, with interventions is reduce infectioon by COVID-19. When interventions take effect, with this plot there is a rapid fall in the curve. As opposed to the lower plot where the curve gently flattens off.  
+The plot shows the log of cases vs cumulative cases, both per capita. All countries follow a similar trajectory, but the goal, with interventions is reduce infectioon by COVID-19. When interventions take effect, with this plot there is a rapid fall in the curve. 
 
-
-```{r fig.width=2, fig.height=2, eval=FALSE}
+```{r fig.width=2, fig.height=2, eval =FALSE}
 # plot nz growth
 #who <- "New Zealand"
 who <- c("New_Zealand", "Australia", "USA", "Italy", "China", "South_Korea", "Spain", "France", "Germany", "United_Kingdom")
@@ -227,7 +227,7 @@ p1 + mytheme + labs(caption = "Source: ECDC") +
 who <- c("Australia", "USA", "Italy", "China", "South_Korea", "Spain", "France", "Germany", "United_Kingdom", "Taiwan", "Singapore")
 
 nzdat <- covid19 %>% filter(country == "New_Zealand", cases > 0)
-plotdata <- covid19 %>% filter(country %in% who, cases_million < 2000, cases > 0, population > 4800000)
+plotdata <- covid19 %>% filter(country %in% who, cases > 0, population > 4800000)
 
 p4 <-  plotdata %>% 
  
@@ -284,7 +284,7 @@ Column {data-width=400}
 
 ### **Cumulative Cases**
     
-```{r}
+```{r fig.width=8, fig.height=7}
 
 #----------------------------------------
 # Plotting the data
