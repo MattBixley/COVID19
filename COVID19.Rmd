@@ -79,6 +79,14 @@ Updates likely 9am NZDT with the over night European data. Just after 1pm NZDT w
 
 ![](images/2019_nCoV.png){ width=100% }
 
+**Wednesday April 1st** (d7)  
+ECDC and MOH now aligned with and extra does of cases applied to the ECDC data which made me then think about applying a 3 day lag to the data as I'd noticed a few discrepencies with Sunday often low and Monday high. Perhaps the text book will let me go back and play with some ARIMA models to have a look.  
+
+Home loop for the run again this time with an effort an change in music to Rancid and MIghty Mighty Bosstones which is a bit quicker than Cowboy Junkies were. That was acheived while the Ragu for the lasgna was maturing and the pasta was resting before being rolled out.  
+
+Time for some predictive modeulling me thinks. Rough guess right now, NZ will struggle to get 2000 cases total. Because the lockdown is good and came early. I guess there is still plenty of scope for those who arrived home late to spread their love around.  
+
+
 **Tuesday March 31st** (d6)  
 Thought I was going to be late for work, luckily the daily PE I've been doing made the 5 meter dash from bed-desk an easy task. Much like when I was actually fit and the daily 9.5km commute to Invermay from 6am meant that 120-140k per week was straight forward!!!! Note: the run home was brutal when tired, may have used 'phone a friend' at times.  
 Napped, Planks, Kettle Bell Swings and the now standard 30 minute run filled up the afternoon and then dragging out a text book for some light reading.  
@@ -192,7 +200,7 @@ There is a discrepency with [MOH](https://www.health.govt.nz/our-work/diseases-a
 
 The plot shows the log of cases vs cumulative cases, both per capita. All countries follow a similar trajectory, but the goal, with interventions is reduce infectioon by COVID-19. When interventions take effect, with this plot there is a rapid fall in the curve. 
 
-```{r fig.width=2, fig.height=2, eval =FALSE}
+```{r, fiveper, fig.width=2, fig.height=2, eval =FALSE}
 # plot nz growth
 #who <- "New Zealand"
 who <- c("New_Zealand", "Australia", "USA", "Italy", "China", "South_Korea", "Spain", "France", "Germany", "United_Kingdom")
@@ -220,7 +228,7 @@ p1 + mytheme + labs(caption = "Source: ECDC") +
   
 ### **Per Capita Cases**  
 
-```{r, fig.width=8, fig.height=8, fig.align='center'}
+```{r, loglog, fig.width=8, fig.height=8, fig.align='center'}
 # log log of percapita nz growth
 # gganimate, should show fall off in incidence when effective measure take over
 
@@ -284,7 +292,7 @@ Column {data-width=400}
 
 ### **Cumulative Cases**
     
-```{r fig.width=8, fig.height=7}
+```{r, days100, fig.width=8, fig.height=7}
 
 #----------------------------------------
 # Plotting the data
@@ -322,7 +330,7 @@ p2 + mytheme + labs(caption = "Source: ECDC") +
  
 ### **Daily Cases**   
 
-```{r}
+```{r, incidence, fig.width=8, fig.height=7}
 ### NZ Cases Barchart
 p5 <- covid19 %>% 
   filter(country == "New_Zealand") %>% 
@@ -366,7 +374,7 @@ Column {data-width=400}
 ### **World map**
 
 
-```{r}
+```{r, worldmap}
 
 library(sf)
 library(rnaturalearth)
@@ -388,7 +396,7 @@ p6 + mytheme
 
 ### **European map**
 
-```{r}
+```{r, euromap}
 ### europe plot
 
 europe <- ne_countries(scale = "medium", returnclass = "sf") %>%
