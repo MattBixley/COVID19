@@ -80,11 +80,11 @@ Updates likely 9am NZDT with the over night European data. Just after 1pm NZDT w
 ![](images/2019_nCoV.png){ width=100% }
 
 **Wednesday April 1st** (d7)  
-ECDC and MOH now aligned with and extra does of cases applied to the ECDC data which made me then think about applying a 3 day lag to the data as I'd noticed a few discrepencies with Sunday often low and Monday high. Perhaps the text book will let me go back and play with some ARIMA models to have a look.  
+ECDC and MOH now aligned with an extra dose of cases applied to the ECDC data, which then made me think about applying a 3 day lag to the data as I'd noticed a few discrepencies with Sunday often low and Monday high. Perhaps the text book will let me go back and play with some ARIMA models to have a look.  
 
-Home loop for the run again this time with an effort an change in music to Rancid and MIghty Mighty Bosstones which is a bit quicker than Cowboy Junkies were. That was acheived while the Ragu for the lasgna was maturing and the pasta was resting before being rolled out.  
+Home loop for the run again, this time with an effort and change in music to Rancid and Mighty Mighty Bosstones, which is a bit quicker than Cowboy Junkies were. That was acheived while the Ragu for the Lasgna was maturing and the pasta was resting before being rolled out.  
 
-Time for some predictive modeulling me thinks. Rough guess right now, NZ will struggle to get 2000 cases total. Because the lockdown is good and came early. I guess there is still plenty of scope for those who arrived home late to spread their love around.  
+Time for some predictive modelling me thinks. Rough guess right now, NZ will struggle to get 2000 cases total. Because the lockdown is good and came early. I guess there is still plenty of scope for those who arrived home late to spread their love around.  
 
 
 **Tuesday March 31st** (d6)  
@@ -189,7 +189,8 @@ Column {data-width=600}
 -------------------------------------
 
 
-### **Notes**  
+### **Notes** 
+April 2nd - ECDC missing yesterdays NZ data, will edit code and grab from MOH from now on.  
 March 31st - The ECDC appear to have updated NZ data to match that of the Ministry of Health by applying an extra 40ish cases to the day.
 
 Modifying the typical plot of cumulative cases per country, either log or raw scale, to adjust for population. Why?  
@@ -237,8 +238,7 @@ who <- c("Australia", "USA", "Italy", "China", "South_Korea", "Spain", "France",
 nzdat <- covid19 %>% filter(country == "New_Zealand", cases > 0)
 plotdata <- covid19 %>% filter(country %in% who, cases > 0, population > 4800000)
 
-p4 <-  plotdata %>% 
- 
+p4 <- plotdata %>%
   ggplot(aes(x = per_million, y = cases_million, group = country)) +
   geom_point(col = "grey30", alpha = 0.3) +
   geom_line(col = "grey30", alpha = 0.3) +
@@ -246,17 +246,14 @@ p4 <-  plotdata %>%
        subtitle = "When restrictions take affect",
        x = "log of Cumulative Cases\n(per Million)", y = "log of Daily Cases\n(per Million)") +
   
-  
   # label the last point
-  #geom_point(data = plotdata %>% filter(date == max(date)), 
-  #           aes(x = per_million, y = cases_million)) +
-  geom_text(data =  plotdata %>% filter(date == max(date)), 
-            aes(label=country),hjust=0, vjust=0, size = 3, size = 3, colour = "blue") +
+  geom_text(data =  plotdata %>% filter(date == today), 
+            aes(label=country),hjust=0, vjust=0, size = 3, colour = "blue") +
 
   # overplot NZ
   geom_point(data = nzdat, aes(x = per_million, y = cases_million), size = 3, colour = "red", alpha = 0.5) +
   geom_line(data = nzdat, aes(x = per_million, y = cases_million), size = 1.5, colour = "red", alpha = 0.5) +
-  geom_text(data = nzdat %>% filter(date == max(date)), aes(label=country),hjust=0, vjust=0, size = 5, colour = "red") +
+  geom_text(data = nzdat %>% filter(date == max(date)), aes(label = country),hjust=0, vjust=0, size = 5, colour = "red") +
   
   # log scales
   scale_y_continuous(trans = "log10", breaks = c(0, 1, 10, 100,1000),
