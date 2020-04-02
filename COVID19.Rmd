@@ -27,6 +27,7 @@ library(flexdashboard)
 library(tidyverse)
 library(lubridate)
 library(scales)
+library(ggthemes)
 
 #------------------ Parameters ------------------
 # cases today
