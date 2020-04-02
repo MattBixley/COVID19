@@ -724,6 +724,11 @@ date,Sex,age_group,DHB,travel,last_country,flight_date,flight_dep_date,flight,ca
 2020-03-31,Male,30 to 39,Waikato,No,,NA,NA,,probable
 2020-03-31,Female,10 to 14,Southern,No,,NA,NA,,probable
 2020-03-31,Female,1 to 4,Southern,No,,NA,NA,,probable
+2020-04-01,Female,20 to 29,Auckland,No,,NA,NA,,confirmed
+2020-04-01,Female,50 to 59,Counties Manukau,No,,NA,NA,,confirmed
+2020-04-01,Female,20 to 29,Hutt Valley,,,NA,NA,,confirmed
+2020-04-01,Male,15 to 19,Southern,,,NA,NA,,confirmed
+2020-04-01,Female,50 to 59,Southern,,,NA,NA,,confirmed
 2020-04-01,Female,40 to 49,Auckland,Yes,Canada,2020-03-25,NA,,confirmed
 2020-04-01,Female,20 to 29,Auckland,Yes,,2020-03-25,NA,,confirmed
 2020-04-01,Female,30 to 39,Auckland,Yes,,2020-03-24,NA,,confirmed
@@ -777,6 +782,8 @@ date,Sex,age_group,DHB,travel,last_country,flight_date,flight_dep_date,flight,ca
 2020-04-01,Female,50 to 59,Waitemata,,,NA,NA,,confirmed
 2020-04-01,Male,30 to 39,Waitemata,Yes,United States of America,2020-03-19,2020-03-17,NZ5,confirmed
 2020-04-01,Female,20 to 29,Whanganui,Yes,Philippines,2020-03-19,NA,,confirmed
+2020-04-01,Male,30 to 39,Waitemata,Unknown,,NA,NA,,probable
+2020-04-01,Male,20 to 29,Auckland,Yes,,2020-03-19,NA,,probable
 2020-04-01,Female,20 to 29,Waitemata,Yes,,2020-03-21,NA,,probable
 2020-04-01,Male,60 to 69,Waitemata,,,NA,NA,,probable
 2020-04-01,Female,70+,Auckland,,,NA,NA,,probable
@@ -789,10 +796,3 @@ date,Sex,age_group,DHB,travel,last_country,flight_date,flight_dep_date,flight,ca
 2020-04-01,Female,30 to 39,Capital and Coast,,,NA,NA,,probable
 2020-04-01,Male,50 to 59,Nelson Marlborough,Yes,Singapore,2020-03-18,NA,,probable
 2020-04-01,Male,20 to 29,Southern,Yes,Australia,NA,NA,,probable
-2020-04-02,Female,20 to 29,Auckland,No,,NA,NA,,confirmed
-2020-04-02,Female,50 to 59,Counties Manukau,No,,NA,NA,,confirmed
-2020-04-02,Female,20 to 29,Hutt Valley,,,NA,NA,,confirmed
-2020-04-02,Male,15 to 19,Southern,,,NA,NA,,confirmed
-2020-04-02,Female,50 to 59,Southern,,,NA,NA,,confirmed
-2020-04-02,Male,30 to 39,Waitemata,Unknown,,NA,NA,,probable
-2020-04-02,Male,20 to 29,Auckland,Yes,,2020-03-19,NA,,probable

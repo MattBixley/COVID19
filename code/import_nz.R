@@ -47,6 +47,8 @@ nz_moh <- bind_rows(nz_moh_cases, nz_moh_probable) %>%
          flight_date = "Arrival date", age_group = "Age group", travel = "International travel", 
          flight_dep_date = "Flight departure date") %>% 
   mutate(date = dmy(date), flight_dep_date = dmy(flight_dep_date), flight_date = dmy(flight_date)) %>% 
+  mutate(date = ifelse(date == max(date),  max(date) - 1 , date )) %>%
+  mutate(date = as_date(date)) %>% 
   arrange(date)
 
 write_csv(nz_moh, "data/nz_moh.csv")
@@ -69,7 +71,8 @@ nzcdc <- tibble(date = seq(min(covid19$date), max(covid19$date), 1),
   mutate_at(vars(cases), funs(replace_na(., 0))) %>% 
   mutate(per_million = round(cum_cases/population*1000000,3)) %>%  # cumulative per million
   mutate(cases_million = round(cases/population*1000000,3)) %>% # daily cases per million
-  mutate(deaths = 0, cum_deaths = 0)
+  mutate(deaths = 0, cum_deaths = 0) %>% 
+  filter(date != max(date))
   
 covid19 <- covid19 %>% filter(country != "New_Zealand") %>% 
   bind_rows(.,nzcdc)

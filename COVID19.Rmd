@@ -27,6 +27,7 @@ library(flexdashboard)
 library(tidyverse)
 library(lubridate)
 library(scales)
+library(ggthemes)
 
 #------------------ Parameters ------------------
 # cases today
@@ -162,7 +163,7 @@ Row
 ```{r}
 #valueBox(value, subtitle, icon = NULL, color = "aqua", width = 4,href = NULL)
 valueBox(
-  value = paste0(max(nz$cum_cases, na.rm = T)," / ",max(nz$cum_deaths, na.rm = T)),
+  value = paste0(max(nz$cum_cases, na.rm = T)," / ", nzdeaths),
   caption = "Cases / Deaths",
   icon = "fas fa-user-md",
   color = "silver"
