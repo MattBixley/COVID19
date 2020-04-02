@@ -30,8 +30,8 @@ library(scales)
 
 #------------------ Parameters ------------------
 # cases today
-nzcases = 61
-nzdeaths = 0 
+nzcases = 0
+nzdeaths = 1 
 
 today = format(Sys.time()-24*60*60, "%Y-%m-%d")
 options("scipen"=100, "digits"=6)
@@ -59,7 +59,7 @@ pal_d = "Paired"
 source("code/import_ecdc.R")
 
 # function to add the latest NZ data
-source("code/insert_today.R")
+source("code/import_nz.R")
 
 # don't run the insert code if it morning, ie ecdc updated overnight
 ifelse(format(Sys.time(), "%H:%M") < "13:00", 
@@ -70,7 +70,7 @@ nz <- covid19 %>% filter(country == "New_Zealand")
 
 ```
 
-Sidebar {.sidebar}
+Sidebar {.sidebar data-width=550}
 =====================================  
 
 __**The Lockdown Diaries**__
@@ -78,6 +78,12 @@ __**The Lockdown Diaries**__
 Updates likely 9am NZDT with the over night European data. Just after 1pm NZDT with the New Zealand daily news and sometime in the evening.  
 
 ![](images/2019_nCoV.png){ width=100% }
+
+**Thursday April 2nd** (d8)  
+Sunny day, got really frustrated with the Ministry of Health and their inconsistency with data has shown up.  
+Standard run, stremgth and bread making day. Nice run with Ann around the Brockville Loop which mean up Halfway Bush road and return via Frasers Gully. The first part was the commute to Invermay for 10 years on foot.  
+
+[World Rogaine Champs](https://cal-o-fest.com/) not quite postponed yet but lots of back and forth e-mails to the USA encouraging that to be the case.  
 
 **Wednesday April 1st** (d7)  
 ECDC and MOH now aligned with an extra dose of cases applied to the ECDC data, which then made me think about applying a 3 day lag to the data as I'd noticed a few discrepencies with Sunday often low and Monday high. Perhaps the text book will let me go back and play with some ARIMA models to have a look.  
@@ -156,7 +162,7 @@ Row
 ```{r}
 #valueBox(value, subtitle, icon = NULL, color = "aqua", width = 4,href = NULL)
 valueBox(
-  value = paste0(max(nz$cum_cases)," / ",max(nz$cum_deaths)),
+  value = paste0(max(nz$cum_cases, na.rm = T)," / ",max(nz$cum_deaths, na.rm = T)),
   caption = "Cases / Deaths",
   icon = "fas fa-user-md",
   color = "silver"
@@ -167,8 +173,8 @@ valueBox(
 
 ```{r}
 valueBox(
-  value = max(nz$per_million),
-  caption = "Cases per million",
+  value = paste0(round(max(nz$per_million, na.rm = T), 1), " / ", round(max(nz$per_million, na.rm = T)/1E6*100, 2), "%"),
+  caption = "Cases per million  /  Percent of Population",
   icon = "fas fa-user-md",
   color = "silver"
 )
@@ -185,13 +191,15 @@ valueBox(
 )
 ```
 
-Column {data-width=600}
+Column {data-width=1000}
 -------------------------------------
 
 
 ### **Notes** 
 April 2nd - ECDC missing yesterdays NZ data, will edit code and grab from MOH from now on.  
-March 31st - The ECDC appear to have updated NZ data to match that of the Ministry of Health by applying an extra 40ish cases to the day.
+EDIT hack to remove NZ from the CDC before adding back in the data as sourced from the MOH, needs work. Aussie and NZ curves following a similar path
+
+March 31st - The ECDC appear to have updated NZ data to match that of the Ministry of Health by applying an extra 40ish cases to the day.  
 
 Modifying the typical plot of cumulative cases per country, either log or raw scale, to adjust for population. Why?  
 
@@ -201,7 +209,7 @@ There is a discrepency with [MOH](https://www.health.govt.nz/our-work/diseases-a
 
 The plot shows the log of cases vs cumulative cases, both per capita. All countries follow a similar trajectory, but the goal, with interventions is reduce infectioon by COVID-19. When interventions take effect, with this plot there is a rapid fall in the curve. 
 
-```{r, fiveper, fig.width=2, fig.height=2, eval =FALSE}
+```{r, fiveper, eval = FALSE}
 # plot nz growth
 #who <- "New Zealand"
 who <- c("New_Zealand", "Australia", "USA", "Italy", "China", "South_Korea", "Spain", "France", "Germany", "United_Kingdom")
@@ -233,8 +241,9 @@ p1 + mytheme + labs(caption = "Source: ECDC") +
 # log log of percapita nz growth
 # gganimate, should show fall off in incidence when effective measure take over
 
-who <- c("Australia", "USA", "Italy", "China", "South_Korea", "Spain", "France", "Germany", "United_Kingdom", "Taiwan", "Singapore")
+who <- c("USA", "Italy", "China", "South_Korea", "Spain", "France", "Germany", "United_Kingdom", "Taiwan", "Singapore")
 
+ausdat <- covid19 %>% filter(country == "Australia", cases > 0)
 nzdat <- covid19 %>% filter(country == "New_Zealand", cases > 0)
 plotdata <- covid19 %>% filter(country %in% who, cases > 0, population > 4800000)
 
@@ -250,10 +259,16 @@ p4 <- plotdata %>%
   geom_text(data =  plotdata %>% filter(date == today), 
             aes(label=country),hjust=0, vjust=0, size = 3, colour = "blue") +
 
+  # overplot straya
+  geom_point(data = ausdat, aes(x = per_million, y = cases_million), size = 3, colour = "darkgreen", alpha = 0.4) +
+  geom_line(data = ausdat, aes(x = per_million, y = cases_million), size = 1.5, colour = "darkgreen", alpha = 0.4) +
+  geom_text(data = ausdat %>% filter(date == max(date)), aes(label = country),hjust=0, vjust=0, size = 5, colour = "darkgreen") +
+  
   # overplot NZ
-  geom_point(data = nzdat, aes(x = per_million, y = cases_million), size = 3, colour = "red", alpha = 0.5) +
-  geom_line(data = nzdat, aes(x = per_million, y = cases_million), size = 1.5, colour = "red", alpha = 0.5) +
-  geom_text(data = nzdat %>% filter(date == max(date)), aes(label = country),hjust=0, vjust=0, size = 5, colour = "red") +
+  geom_point(data = nzdat, aes(x = per_million, y = cases_million), size = 3, colour = "brown", alpha = 0.7) +
+  geom_line(data = nzdat, aes(x = per_million, y = cases_million), size = 1.5, colour = "brown", alpha = 0.7) +
+  geom_text(data = nzdat %>% filter(date == max(date)), aes(label = country),hjust=0, vjust=0, size = 5, colour = "brown") +
+
   
   # log scales
   scale_y_continuous(trans = "log10", breaks = c(0, 1, 10, 100,1000),

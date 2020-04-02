@@ -33,15 +33,14 @@ library(lubridate)
 nz_moh_cases <- read_html(nz_moh) %>%
   html_nodes("table") %>%
   html_table(fill=TRUE) %>%
-  .[[1]] %>% 
+  .[[1]] %>% # table one is the confirmed
   mutate(cases = "confirmed")
 
 nz_moh_probable <- read_html(nz_moh) %>%
   html_nodes("table") %>%
   html_table(fill=TRUE) %>%
-  .[[2]] %>% 
+  .[[3]] %>% # ttable 3 is the probables
   mutate(cases = "probable")
-
 
 nz_moh <- bind_rows(nz_moh_cases, nz_moh_probable) %>% 
   rename(date = "Date of report", last_country = "Last country before return", flight = "Flight number",
@@ -52,8 +51,27 @@ nz_moh <- bind_rows(nz_moh_cases, nz_moh_probable) %>%
 
 write_csv(nz_moh, "data/nz_moh.csv")
 
+# reconstruct the ecdc data for NZ
 nz_moh_short <- nz_moh %>% 
   count(date) %>% 
-  mutate(cum_cases = cumsum(n)) %>% 
-  rename(cases = "n")
- 
+  rename(cases = "n") %>% 
+  mutate(cum_cases = cumsum(cases))
+
+nzcdc <- tibble(date = seq(min(covid19$date), max(covid19$date), 1),
+  day = day(date),
+  month = month(date),
+  year = year(date),
+  country = "New_Zealand",
+  geoId = "NZ",
+  countryterritoryCode = "NZL",
+  population = 4885500) %>% 
+  left_join(., nz_moh_short, by = "date") %>% 
+  mutate_at(vars(cases), funs(replace_na(., 0))) %>% 
+  mutate(per_million = round(cum_cases/population*1000000,3)) %>%  # cumulative per million
+  mutate(cases_million = round(cases/population*1000000,3)) %>% # daily cases per million
+  mutate(deaths = 0, cum_deaths = 0)
+  
+covid19 <- covid19 %>% filter(country != "New_Zealand") %>% 
+  bind_rows(.,nzcdc)
+
+       
