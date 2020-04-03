@@ -244,7 +244,7 @@ p1 + mytheme + labs(caption = "Source: ECDC") +
   
 ### **Per Capita Cases**  
 
-```{r, loglog, fig.width=10, fig.height=8, fig.align='center'}
+```{r, loglog, fig.width=12, fig.height=8, fig.align='center'}
 # log log of percapita nz growth
 # gganimate, should show fall off in incidence when effective measure take over
 
@@ -253,6 +253,9 @@ who <- c("USA", "Italy", "China", "South_Korea", "Spain", "France", "Germany", "
 ausdat <- covid19 %>% filter(country == "Australia", log(cases_million) > 0.02)
 nzdat <- covid19 %>% filter(country == "New_Zealand", log(cases_million) > 0.02)
 plotdata <- covid19 %>% filter(country %in% who, log(cases_million) > 0.02, population > 4800000)
+
+x <-"per_million"
+y <- "cases_million"
 
 p4 <- plotdata %>%
   ggplot(aes(x = per_million, y = cases_million, group = country)) +
@@ -305,13 +308,13 @@ p4 + theme_classic() +
 =======================================================================
 
 
-Column {data-width=400}
+Column
 -------------------------------------
 
 
 ### **Cumulative Cases**
     
-```{r, days100, fig.width=8, fig.height=7}
+```{r, days100}
 
 #----------------------------------------
 # Plotting the data
@@ -349,7 +352,7 @@ p2 + mytheme + labs(caption = "Source: ECDC") +
  
 ### **Daily Cases**   
 
-```{r, incidence, fig.width=8, fig.height=7}
+```{r, incidence, fig.width=8, fig.height=6, fig.align='center'}
 ### NZ Cases Barchart
 p5 <- covid19 %>% 
   filter(country == "New_Zealand") %>% 
