@@ -80,6 +80,10 @@ Updates likely 9am NZDT with the over night European data. Just after 1pm NZDT w
 
 ![](images/2019_nCoV.png){ width=100% }
 
+**Friday April 3rd** (d9)
+Yesterdays update this morning (Saturday). Getting nagged by Greig Hamilton for certain plots to appear. The irony of that coming from him is that I was busy trying to sort out what was happening with the World Rogaining Championships (24 hour Navigation Race) to be held in Tahoe in August. Greig thinks he is quite good (cough cough) having won a couple of world title but hasn't got close to winning the last two NZ Champs which I've set. So for the family that don't know I found myself the President of that World organisation. Just like being head of the IOC, IAAF and FIFA really. Anyway that's cancelled now, so I can make Greigs plots for him.  
+
+
 **Thursday April 2nd** (d8)  
 Sunny day, got really frustrated with the Ministry of Health and their inconsistency with data has shown up.  
 Standard run, stremgth and bread making day. Nice run with Ann around the Brockville Loop which mean up Halfway Bush road and return via Frasers Gully. The first part was the commute to Invermay for 10 years on foot.  
@@ -192,11 +196,13 @@ valueBox(
 )
 ```
 
-Column {data-width=1000}
+Column
 -------------------------------------
 
 
 ### **Notes** 
+April 4th - for the 3rd day in a row the MOH have change the report format of positioning of the table on the webpage!!!!  
+
 April 2nd - ECDC missing yesterdays NZ data, will edit code and grab from MOH from now on.  
 EDIT hack to remove NZ from the CDC before adding back in the data as sourced from the MOH, needs work. Aussie and NZ curves following a similar path
 
@@ -238,7 +244,7 @@ p1 + mytheme + labs(caption = "Source: ECDC") +
   
 ### **Per Capita Cases**  
 
-```{r, loglog, fig.width=8, fig.height=8, fig.align='center'}
+```{r, loglog, fig.width=10, fig.height=8, fig.align='center'}
 # log log of percapita nz growth
 # gganimate, should show fall off in incidence when effective measure take over
 

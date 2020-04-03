@@ -39,7 +39,7 @@ nz_moh_cases <- read_html(nz_moh) %>%
 nz_moh_probable <- read_html(nz_moh) %>%
   html_nodes("table") %>%
   html_table(fill=TRUE) %>%
-  .[[3]] %>% # ttable 3 is the probables
+  .[[2]] %>% # ttable 3 is the probables
   mutate(cases = "probable")
 
 nz_moh <- bind_rows(nz_moh_cases, nz_moh_probable) %>% 

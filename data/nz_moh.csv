@@ -844,7 +844,7 @@ date,Sex,age_group,DHB,travel,last_country,flight,flight_date,cases
 2020-04-02,Male,60 to 69,Waitemata,,,,NA,confirmed
 2020-04-02,Female,30 to 39,Whanganui,Yes,United Kingdom,NZ3285 (SQ285),2020-03-24,confirmed
 2020-04-02,Male,30 to 39,Whanganui,Yes,United Kingdom,,2020-03-24,confirmed
-2020-04-02,Female,15 to 19,Canterbury,No,,,NA,probable
+2020-04-02,Female,15 to 19,Canterbury,No,,,NA,probable
 2020-04-02,,20 to 29,Capital and Coast,,,,NA,probable
 2020-04-02,Female,15 to 19,Counties Manukau,,,,NA,probable
 2020-04-02,Female,20 to 29,Counties Manukau,,,,NA,probable
