@@ -63,9 +63,9 @@ source("code/import_ecdc.R")
 source("code/import_nz.R")
 
 # don't run the insert code if it morning, ie ecdc updated overnight
-ifelse(format(Sys.time(), "%H:%M") < "13:00", 
-       covid19,
-       covid19 <- insert_today(nzcases = nzcases, nzdeaths = nzdeaths))
+# ifelse(format(Sys.time(), "%H:%M") < "13:00", 
+#        covid19,
+#        covid19 <- insert_today(nzcases = nzcases, nzdeaths = nzdeaths))
 
 nz <- covid19 %>% filter(country == "New_Zealand")
 
@@ -244,14 +244,14 @@ p1 + mytheme + labs(caption = "Source: ECDC") +
 
 who <- c("USA", "Italy", "China", "South_Korea", "Spain", "France", "Germany", "United_Kingdom", "Taiwan", "Singapore")
 
-ausdat <- covid19 %>% filter(country == "Australia", cases > 0)
-nzdat <- covid19 %>% filter(country == "New_Zealand", cases > 0)
-plotdata <- covid19 %>% filter(country %in% who, cases > 0, population > 4800000)
+ausdat <- covid19 %>% filter(country == "Australia", log(cases_million) > 0.02)
+nzdat <- covid19 %>% filter(country == "New_Zealand", log(cases_million) > 0.02)
+plotdata <- covid19 %>% filter(country %in% who, log(cases_million) > 0.02, population > 4800000)
 
 p4 <- plotdata %>%
   ggplot(aes(x = per_million, y = cases_million, group = country)) +
-  geom_point(col = "grey30", alpha = 0.3) +
-  geom_line(col = "grey30", alpha = 0.3) +
+  geom_point(col = "grey10", alpha = 0.5) +
+  geom_line(col = "grey10", alpha = 0.5) +
   labs(title = "Beating the Curve",
        subtitle = "When restrictions take affect",
        x = "log of Cumulative Cases\n(per Million)", y = "log of Daily Cases\n(per Million)") +
