@@ -80,8 +80,13 @@ Updates likely 9am NZDT with the over night European data. Just after 1pm NZDT w
 
 ![](images/2019_nCoV.png){ width=100% }
 
+**Sunday April 5th** (d11) 
+Interesting item on the news about the Swedish approach to lockdown and having more businesses open, so I added their name to a few of the plots. Unless their health system is better able to cope they have a similar status to the UK and not far behind the USA. Certainly way higher cases/capita than do NZ and Australia.  
+
+Kitchen being painted, I busted out my ancient builders skills of using silicone sealant like a pro, because I am a pro. Also tuned my circular saw into a table saw to trim up old Rimu and I still have all my fingers.  
+
 **Saturday April 4th** (d10) 
-Curves falttening but not dropping, needs to drop. Back to renovation mode with painting the kitchen. Trying not to cut my fingers off making a chopping board from Rimu extracted from the house.  
+Curves flattening but not dropping, needs to drop. Back to renovation mode with painting the kitchen. Trying not to cut my fingers off making a chopping board from Rimu extracted from the house.  
 
 **Friday April 3rd** (d9)
 Yesterdays update this morning (Saturday). Getting nagged by Greig Hamilton for certain plots to appear. The irony of that coming from him is that I was busy trying to sort out what was happening with the World Rogaining Championships (24 hour Navigation Race) to be held in Tahoe in August. Greig thinks he is quite good (cough cough) having won a couple of world title but hasn't got close to winning the last two NZ Champs which I've set. So for the family that don't know I found myself the President of that World organisation. Just like being head of the IOC, IAAF and FIFA really. Anyway that's cancelled now, so I can make Greigs plots for him.  
@@ -181,7 +186,7 @@ valueBox(
 
 ```{r}
 valueBox(
-  value = paste0(round(max(nz$per_million, na.rm = T), 1), " / ", round(max(nz$per_million, na.rm = T)/1E6*100, 2), "%"),
+  value = paste0(round(max(nz$per_million, na.rm = T), 1), " / ", round(max(nz$per_million, na.rm = T)/1E6*100, 3), "%"),
   caption = "Cases per million  /  Percent of Population",
   icon = "fas fa-user-md",
   color = "silver"
@@ -251,7 +256,7 @@ p1 + mytheme + labs(caption = "Source: ECDC") +
 # log log of percapita nz growth
 # gganimate, should show fall off in incidence when effective measure take over
 
-who <- c("USA", "Italy", "China", "South_Korea", "Spain", "France", "Germany", "United_Kingdom", "Taiwan", "Singapore")
+who <- c("USA", "Italy", "China", "South_Korea", "Spain", "Sweden", "Germany", "United_Kingdom", "Taiwan", "Singapore")
 
 ausdat <- covid19 %>% filter(country == "Australia", log(cases_million) > 0.02)
 nzdat <- covid19 %>% filter(country == "New_Zealand", log(cases_million) > 0.02)
@@ -321,7 +326,7 @@ Column
 
 #----------------------------------------
 # Plotting the data
-who <- c("New_Zealand", "Australia", "USA", "Italy", "China", "South_Korea", "Spain", "France", "Germany", "United_Kingdom")
+who <- c("New_Zealand", "Australia", "USA", "Italy", "China", "South_Korea", "Spain", "Sweden", "Germany", "United_Kingdom")
 
 dayssince <- covid19 %>% filter(country %in% who , cum_cases > 100) %>%
   group_by(country) %>% 
@@ -367,7 +372,7 @@ p5 <- covid19 %>%
 p5 + mytheme + labs(caption = "Source: ECDC") + theme(legend.position="none")
 
 
-who <- c("New_Zealand", "Australia", "USA", "Italy", "China", "South_Korea", "Spain", "France", "Germany", "United_Kingdom", "Norway")
+who <- c("New_Zealand", "Australia", "USA", "Italy", "China", "South_Korea", "Spain", "France", "Germany", "United_Kingdom", "Norway", "Sweden")
 
 #who <- covid19 %>% filter(cum_cases > 400) %>% 
 #  select(country) %>% 
