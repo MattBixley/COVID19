@@ -209,6 +209,9 @@ Column
 
 
 ### **Notes** 
+April 6th - the family keep asking for local numbers, they are hard to find in a reproducible way.  
+![](images/SDHB Case Map 050420.png){ width=90% }
+
 April 4th - for the 3rd day in a row the MOH have change the report format of positioning of the table on the webpage!!!!  
 
 April 2nd - ECDC missing yesterdays NZ data, will edit code and grab from MOH from now on.  
