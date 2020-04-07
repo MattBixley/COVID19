@@ -80,6 +80,16 @@ Updates likely 9am NZDT with the over night European data. Just after 1pm NZDT w
 
 ![](images/2019_nCoV.png){ width=100% }
 
+**Tuesday April 5th** (d13)  
+Had a read of Section 70 of the the 1956 Health Act which covers what is legal and not legal. It's not clear if decisions being made and restrictions in place have been made legal or not. It certainly doesn't get reported that changes are legal under xyz act. 
+
+*Part 3  
+Infectious and notifiable diseases  
+S70 Special powers of medical officer of health*  
+
+**Monday April 5th** (d12)
+Painting the Kitchen
+
 **Sunday April 5th** (d11) 
 Interesting item on the news about the Swedish approach to lockdown and having more businesses open, so I added their name to a few of the plots. Unless their health system is better able to cope they have a similar status to the UK and not far behind the USA. Certainly way higher cases/capita than do NZ and Australia.  
 
