@@ -459,9 +459,11 @@ p7 + mytheme
 
 **New Zealand**
 =======================================================================
-  
-DHB Hexbins from [Thomas Lumley](https://github.com/tslumley/DHBins)  
 
+Column {data-width=400}
+-------------------------------------
+
+### **Cumulative Cases**
 
 ```{r dhb}
 #install.packages("DHBins")
@@ -488,23 +490,43 @@ p <- ggplot(nz_covid)+
   labs(title = "Cumulative Cases as at: {nz_covid$date[as.integer(frame)]}", caption = "Source: MOH") +
   theme_void() +
   theme(legend.position="right") +
-  theme(title = element_text(size=16, face='bold')) +
+  theme(title = element_text(size=14, face='bold')) +
   transition_manual(date)
 
 # Video output
 animate(
-  p + enter_fade() + 
-    exit_shrink() +
-    ease_aes('sine-in-out'),
+  p + ease_aes('linear'),
   #renderer = av_renderer()
-  fps = 6,
-  width = 600, height = 800,
+  fps = 3,
+  width = 400, height = 600,
   renderer = gifski_renderer(),
   end_pause = 12
 )
 ```
 
+### **Daily Cases**
 
+```{r dhb2}
+p2 <- ggplot(nz_covid)+
+  geom_dhb(aes(fill = cases, map_id=dhb_fixname(DHB))) +
+  scale_fill_gradient(low = low, high = high, name = "Count") +
+  geom_label_dhb(short=F,colour="black") +
+  labs(title = "Cases per Day: {nz_covid$date[as.integer(frame)]}", caption = "Source: MOH") +
+  theme_void() +
+  theme(legend.position="right") +
+  theme(title = element_text(size=14, face='bold')) +
+  transition_manual(date)
+
+# Video output
+animate(
+  p2 + ease_aes('linear'),
+  #renderer = av_renderer()
+  fps = 3,
+  width = 400, height = 600,
+  renderer = gifski_renderer(),
+  end_pause = 12
+)
+```
 
 **About**
 =======================================================================
