@@ -229,3 +229,81 @@ covid19 %>% filter(country == "Spain") %>%
   select(country, date, cases, cases3) %>% 
   ggplot(aes(x = date, y = cases3)) +
   geom_bar(stat = "identity")
+
+
+
+## animate loglog
+# log log of percapita nz growth
+# gganimate, should show fall off in incidence when effective measure take over
+loglog <- covid19 %>% 
+  select(date, country, cases, population) %>% 
+  pivot_wider(names_from = date, values_from = cases, values_fill = list(cases = 0)) %>% 
+  pivot_longer(names_to = "date", values_to = "cases", cols = c(-country, -population)) %>% 
+  mutate(date = ymd(date)) %>% 
+  arrange(country, date) %>% 
+  group_by(country) %>% 
+  mutate(cum_case = cumsum(cases)) %>% 
+  ungroup() %>% 
+  mutate(cases_million = cases/population*1E6, per_million = cum_case/population*1E6)
+
+
+
+who <- c("USA", "Italy", "China", "South_Korea", "Spain", "Sweden", "Germany", "United_Kingdom", "Taiwan", "Singapore")
+
+ausdat <- loglog %>% filter(country == "Australia", log(cases_million) > 0.02)
+nzdat <- loglog %>% filter(country == "New_Zealand", log(cases_million) > 0.02)
+plotdata <- loglog %>% filter(country %in% who, log(cases_million) > 0.02, population > 4800000)
+
+p4 <- plotdata %>%
+  ggplot(aes(x = per_million, y = cases_million, group = country)) +
+  geom_point(col = "grey10", alpha = 0.5) +
+  geom_line(col = "grey10", alpha = 0.5) +
+  labs(title = "Beating the Curve",
+       subtitle = "When restrictions take affect",
+       x = "log of Cumulative Cases\n(per Million)", y = "log of Daily Cases\n(per Million)") +
+  
+  # label the last point
+  geom_text(data =  plotdata %>% filter(date == today), 
+            aes(label=country),hjust=0, vjust=0, size = 3, colour = "blue") +
+  
+  # overplot straya
+  geom_point(data = ausdat, aes(x = per_million, y = cases_million), size = 3, colour = "darkgreen", alpha = 0.4) +
+  geom_line(data = ausdat, aes(x = per_million, y = cases_million), size = 1.5, colour = "darkgreen", alpha = 0.4) +
+  geom_text(data = ausdat %>% filter(date == max(date)), aes(label = country),hjust=0, vjust=0, size = 5, colour = "darkgreen") +
+  
+  # overplot NZ
+  geom_point(data = nzdat, aes(x = per_million, y = cases_million), size = 3, colour = "brown", alpha = 0.7) +
+  geom_line(data = nzdat, aes(x = per_million, y = cases_million), size = 1.5, colour = "brown", alpha = 0.7) +
+  geom_text(data = nzdat %>% filter(date == max(date)), aes(label = country),hjust=0, vjust=0, size = 5, colour = "brown") +
+  
+  
+  # log scales
+  scale_y_continuous(trans = "log10", breaks = c(0, 1, 10, 100,1000),
+                     minor_breaks = c(seq(0,1,0.1),
+                                      seq(1,10,1),
+                                      seq(10,100,10),
+                                      seq(100,1000,100))) +
+  scale_x_continuous(trans = "log10", labels = c(0, 10, 100, 1000,10000),
+                     breaks = c(0, 10, 100, 1000,10000),
+                     minor_breaks = c(seq(0, 10,1),
+                                      seq(0, 100, 10),
+                                      seq(100, 1000, 100),
+                                      seq(1000, 10000, 1000)))
+
+p <- p4 + theme_classic() + 
+  theme(legend.position=NULL) +
+  theme(axis.line = element_line(colour = "grey50")) + # plot axis to grey
+  theme(panel.grid.major = element_line(colour = "grey40", size = 0.4)) + # grid to grey
+  theme(panel.grid.minor = element_line(colour = "grey70", size = 0.3)) + # grid to grey
+  labs(caption = "Source: ECDC") + theme(legend.position="none") + 
+  transition_reveal(cases_million)
+
+# Video output
+animate(
+  p + ease_aes('linear'),
+  #renderer = av_renderer()
+  fps = 5,
+  width = 900, height = 600,
+  renderer = gifski_renderer()
+)
+
