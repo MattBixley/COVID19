@@ -32,7 +32,7 @@ library(ggthemes)
 #------------------ Parameters ------------------
 # cases today
 nzcases = 0
-nzdeaths = 2
+nzdeaths = 4
 
 today = format(Sys.time()-24*60*60, "%Y-%m-%d")
 options("scipen"=100, "digits"=6)
@@ -79,6 +79,9 @@ __**The Lockdown Diaries**__
 Updates likely 9am NZDT with the over night European data. Just after 1pm NZDT with the New Zealand daily news and sometime in the evening.  
 
 ![](images/2019_nCoV.png){ width=100% }
+
+**Saturday April 11th** (d17)  
+Refuse to let the fun police stop me from adventuring, sort of. Set and Orienteering course for the bubble and another boy who lives up around the corner. Day started with Croissants and Pain au Chocolat as well as baking the standard loaf. About to start on Baquettes now.    
 
 **Friday April 10th** (d16)  
 Happy Easter - some virtual National Champs Orienteering today, sticking to the rules.  
