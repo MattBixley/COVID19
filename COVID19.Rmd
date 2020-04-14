@@ -32,7 +32,7 @@ library(ggthemes)
 #------------------ Parameters ------------------
 # cases today
 nzcases = 0
-nzdeaths = 4
+nzdeaths = 9
 
 today = format(Sys.time()-24*60*60, "%Y-%m-%d")
 options("scipen"=100, "digits"=6)
@@ -79,6 +79,9 @@ __**The Lockdown Diaries**__
 Updates likely 9am NZDT with the over night European data. Just after 1pm NZDT with the New Zealand daily news and sometime in the evening.  
 
 ![](images/2019_nCoV.png){ width=100% }
+
+**Tuesday April 14th** (d20)  
+MOH have messed with their data again and I haven't fixed it. Oh I wish I knew someone who has the data at ESR ;-) Will fix tomorrow.
 
 **Saturday April 11th** (d17)  
 Refuse to let the fun police stop me from adventuring, sort of. Set and Orienteering course for the bubble and another boy who lives up around the corner. Day started with Croissants and Pain au Chocolat as well as baking the standard loaf. About to start on Baquettes now.    
@@ -509,7 +512,7 @@ p <- ggplot(nz_covid)+
 animate(
   p + ease_aes('linear'),
   #renderer = av_renderer()
-  fps = 3,
+  fps = 5,
   width = 400, height = 600,
   renderer = gifski_renderer(),
   end_pause = 12
@@ -533,7 +536,7 @@ p2 <- ggplot(nz_covid)+
 animate(
   p2 + ease_aes('linear'),
   #renderer = av_renderer()
-  fps = 3,
+  fps = 5,
   width = 400, height = 600,
   renderer = gifski_renderer(),
   end_pause = 12
