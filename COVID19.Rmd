@@ -287,10 +287,11 @@ p1 + mytheme + labs(caption = "Source: ECDC") +
 # gganimate, should show fall off in incidence when effective measure take over
 
 who <- c("USA", "Italy", "China", "South_Korea", "Spain", "Sweden", "Germany", "United_Kingdom", "Taiwan", "Singapore")
+limit <- 0.005
 
-ausdat <- covid19 %>% filter(country == "Australia", log(cases_million) > 0.02)
-nzdat <- covid19 %>% filter(country == "New_Zealand", log(cases_million) > 0.02)
-plotdata <- covid19 %>% filter(country %in% who, log(cases_million) > 0.02, population > 4800000)
+ausdat <- covid19 %>% filter(country == "Australia", log(cases_million) > limit)
+nzdat <- covid19 %>% filter(country == "New_Zealand", log(cases_million) > limit)
+plotdata <- covid19 %>% filter(country %in% who, log(cases_million) > limit, population > 4800000)
 
 x <-"per_million"
 y <- "cases_million"

@@ -42,6 +42,9 @@ nz_moh_probable <- read_html(nz_moh) %>%
   .[[2]] %>% # ttable 3 is the probables
   mutate(cases = "probable")
 
+nz_march <- read_csv("data/nz_moh_march.csv") %>% 
+  mutate(date = dmy(date), flight_date = dmy(flight_date))
+
 nz_moh <- bind_rows(nz_moh_cases, nz_moh_probable) %>% 
   rename(date = "Date of report", last_country = "Last country before return", flight = "Flight number",
          flight_date = "Arrival date", age_group = "Age group", travel = "International travel", 
@@ -55,7 +58,8 @@ nz_moh <- bind_rows(nz_moh_cases, nz_moh_probable) %>%
   # hack to push the ovelap cases back one day
   #mutate(date = ifelse(date == max(date),  max(date) - 1 , date )) %>%
   #mutate(date = as_date(date)) %>% 
-  arrange(date)
+  arrange(date) %>% 
+  bind_rows(.,nz_march)
 
 write_csv(nz_moh, "data/nz_moh.csv")
 
