@@ -60,19 +60,6 @@ date,Sex,age_group,DHB,travel,last_country,flight,flight_date,cases
 2020-04-01,Male,30 to 39,West Coast,No,,,NA,confirmed
 2020-04-01,Male,20 to 29,Whanganui,Yes,Philippines,,2020-03-19,confirmed
 2020-04-01,Female,20 to 29,Whanganui,Yes,Philippines,,2020-03-19,confirmed
-2020-04-01,Female,10 to 14,Auckland,,,,NA,probable
-2020-04-01,Female,30 to 39,Canterbury,Yes,Australia,EK412,2020-03-22,probable
-2020-04-01,Female,50 to 59,Canterbury,,,,NA,probable
-2020-04-01,Male,30 to 39,Capital and Coast,No,,,NA,probable
-2020-04-01,Female,30 to 39,Capital and Coast,No,,,NA,probable
-2020-04-01,Male,50 to 59,Nelson Marlborough,Yes,Singapore,,2020-03-18,probable
-2020-04-01,Male,20 to 29,Southern,Yes,Australia,,NA,probable
-2020-04-01,Female,1 to 4,Waikato,No,,,NA,probable
-2020-04-01,Male,20 to 29,Waitemata,,,,NA,probable
-2020-04-01,Male,60 to 69,Waitemata,No,,,NA,probable
-2020-04-01,Male,50 to 59,Waitemata,,,,NA,probable
-2020-04-01,Male,60 to 69,Waitemata,,,,NA,probable
-2020-04-01,Female,20 to 29,Waitemata,Yes,,,2020-03-21,probable
 2020-04-02,Female,20 to 29,Auckland,No,,,NA,confirmed
 2020-04-02,Male,30 to 39,Auckland,No,,,NA,confirmed
 2020-04-02,Female,50 to 59,Auckland,No,,,NA,confirmed
@@ -131,30 +118,6 @@ date,Sex,age_group,DHB,travel,last_country,flight,flight_date,cases
 2020-04-02,Male,60 to 69,Waitemata,,,,NA,confirmed
 2020-04-02,Male,30 to 39,Whanganui,Yes,United Kingdom,,2020-03-24,confirmed
 2020-04-02,Female,30 to 39,Whanganui,Yes,United Kingdom,NZ3285,2020-03-24,confirmed
-2020-04-02,Female,30 to 39,Bay of Plenty,No,,,NA,probable
-2020-04-02,Male,1 to 4,Canterbury,,,,NA,probable
-2020-04-02,Male,30 to 39,Canterbury,No,,,NA,probable
-2020-04-02,Female,15 to 19,Canterbury,No,,,NA,probable
-2020-04-02,Female,60 to 69,Canterbury,No,,,NA,probable
-2020-04-02,Female,40 to 49,Canterbury,No,,,NA,probable
-2020-04-02,Female,30 to 39,Canterbury,No,,,NA,probable
-2020-04-02,Female,20 to 29,Capital and Coast,No,,,NA,probable
-2020-04-02,Female,30 to 39,Capital and Coast,Yes,Australia,,2020-03-25,probable
-2020-04-02,Female,15 to 19,Counties Manukau,,,,NA,probable
-2020-04-02,Female,70+,Hawke's Bay,,,,NA,probable
-2020-04-02,Female,70+,Hawke's Bay,,,,NA,probable
-2020-04-02,Male,1 to 4,Hawke's Bay,,,NZ5015,NA,probable
-2020-04-02,Male,50 to 59,Southern,No,,,NA,probable
-2020-04-02,Male,1 to 4,Waikato,No,,,NA,probable
-2020-04-02,Female,50 to 59,Wairarapa,No,,,NA,probable
-2020-04-02,Male,40 to 49,Wairarapa,No,,,NA,probable
-2020-04-02,Female,15 to 19,Waitemata,No,,,NA,probable
-2020-04-02,Male,50 to 59,Waitemata,No,,,NA,probable
-2020-04-02,Male,40 to 49,Waitemata,Yes,United States of America,,2020-03-11,probable
-2020-04-02,Male,30 to 39,Waitemata,,,,NA,probable
-2020-04-02,Female,50 to 59,Waitemata,,,,NA,probable
-2020-04-02,Male,20 to 29,Waitemata,,,,NA,probable
-2020-04-02,Male,20 to 29,Waitemata,,,,NA,probable
 2020-04-03,Male,50 to 59,Auckland,Yes,Philippines,CX2191,2020-03-25,confirmed
 2020-04-03,Female,40 to 49,Auckland,Yes,United States of America,,2020-03-08,confirmed
 2020-04-03,Female,10 to 14,Auckland,,,,NA,confirmed
@@ -210,24 +173,6 @@ date,Sex,age_group,DHB,travel,last_country,flight,flight_date,cases
 2020-04-03,Male,60 to 69,Waitemata,No,,,NA,confirmed
 2020-04-03,Male,40 to 49,Waitemata,No,,,NA,confirmed
 2020-04-03,Female,20 to 29,Waitemata,No,,,NA,confirmed
-2020-04-03,Female,60 to 69,Auckland,No,,,NA,probable
-2020-04-03,Female,20 to 29,Auckland,No,,,NA,probable
-2020-04-03,Female,20 to 29,Auckland,No,,,NA,probable
-2020-04-03,Female,20 to 29,Bay of Plenty,No,,,NA,probable
-2020-04-03,Male,70+,Canterbury,No,,,NA,probable
-2020-04-03,Female,70+,Canterbury,No,,,NA,probable
-2020-04-03,Male,70+,Canterbury,No,,,NA,probable
-2020-04-03,Female,30 to 39,Canterbury,No,,,NA,probable
-2020-04-03,Female,50 to 59,Canterbury,No,,,NA,probable
-2020-04-03,Male,15 to 19,Capital and Coast,No,,,NA,probable
-2020-04-03,Male,60 to 69,Capital and Coast,No,,,NA,probable
-2020-04-03,Male,50 to 59,Capital and Coast,No,,,NA,probable
-2020-04-03,Female,40 to 49,Hutt Valley,No,,NZ5386,NA,probable
-2020-04-03,Male,20 to 29,Southern,Yes,Australia,,2020-03-23,probable
-2020-04-03,Male,15 to 19,Waikato,No,,,NA,probable
-2020-04-03,Female,30 to 39,Waikato,No,,,NA,probable
-2020-04-03,Male,20 to 29,Waitemata,No,,,NA,probable
-2020-04-03,Male,50 to 59,Waitemata,,,,NA,probable
 2020-04-04,Female,20 to 29,Auckland,Yes,Canada,NZ23,2020-03-22,confirmed
 2020-04-04,Male,20 to 29,Auckland,Yes,Mexico,NZ29,2020-03-22,confirmed
 2020-04-04,Male,70+,Auckland,No,,,NA,confirmed
@@ -275,37 +220,6 @@ date,Sex,age_group,DHB,travel,last_country,flight,flight_date,cases
 2020-04-04,Male,40 to 49,Waitemata,No,,,NA,confirmed
 2020-04-04,Male,60 to 69,Waitemata,Yes,Australia,,2020-03-20,confirmed
 2020-04-04,Female,10 to 14,Waitemata,,,,NA,confirmed
-2020-04-04,Male,5 to 9,Auckland,No,,,NA,probable
-2020-04-04,Male,20 to 29,Auckland,No,,,NA,probable
-2020-04-04,Male,20 to 29,Auckland,No,,,NA,probable
-2020-04-04,Female,20 to 29,Auckland,No,,,NA,probable
-2020-04-04,Male,70+,Canterbury,No,,,NA,probable
-2020-04-04,Female,70+,Canterbury,No,,,NA,probable
-2020-04-04,Female,70+,Canterbury,No,,,NA,probable
-2020-04-04,Female,50 to 59,Canterbury,No,,,NA,probable
-2020-04-04,Female,30 to 39,Canterbury,No,,,NA,probable
-2020-04-04,Female,40 to 49,Canterbury,No,,,NA,probable
-2020-04-04,Female,30 to 39,Canterbury,No,,,NA,probable
-2020-04-04,Female,1 to 4,Capital and Coast,No,,,NA,probable
-2020-04-04,Male,60 to 69,Capital and Coast,No,,,NA,probable
-2020-04-04,Female,50 to 59,Capital and Coast,No,,,NA,probable
-2020-04-04,Female,20 to 29,Counties Manukau,No,,,NA,probable
-2020-04-04,Male,15 to 19,MidCentral,No,,,NA,probable
-2020-04-04,Male,30 to 39,Nelson Marlborough,No,,,NA,probable
-2020-04-04,Female,50 to 59,Nelson Marlborough,No,,,NA,probable
-2020-04-04,Male,50 to 59,Southern,Yes,United States of America,,2020-03-18,probable
-2020-04-04,Male,30 to 39,Waikato,No,,,NA,probable
-2020-04-04,Female,5 to 9,Waikato,No,,,NA,probable
-2020-04-04,Male,10 to 14,Waitemata,No,,,NA,probable
-2020-04-04,Male,50 to 59,Waitemata,No,,,NA,probable
-2020-04-04,Male,20 to 29,Waitemata,Yes,United States of America,,2020-03-18,probable
-2020-04-04,Female,20 to 29,Waitemata,Yes,Australia,,NA,probable
-2020-04-04,Male,50 to 59,Waitemata,No,,,NA,probable
-2020-04-04,Female,15 to 19,Waitemata,No,,,NA,probable
-2020-04-04,Female,50 to 59,Waitemata,No,,,NA,probable
-2020-04-04,Female,20 to 29,Waitemata,,,,NA,probable
-2020-04-04,Male,30 to 39,Waitemata,,,,NA,probable
-2020-04-04,Male,20 to 29,Waitemata,,,,NA,probable
 2020-04-05,Female,60 to 69,Auckland,No,,,NA,confirmed
 2020-04-05,Male,20 to 29,Auckland,Yes,Qatar,,2020-04-03,confirmed
 2020-04-05,Female,60 to 69,Auckland,Yes,Singapore,SQ281,2020-03-19,confirmed
@@ -348,34 +262,6 @@ date,Sex,age_group,DHB,travel,last_country,flight,flight_date,cases
 2020-04-05,Female,20 to 29,Waitemata,No,,,NA,confirmed
 2020-04-05,Male,50 to 59,Waitemata,No,,,NA,confirmed
 2020-04-05,Male,20 to 29,Waitemata,No,,,NA,confirmed
-2020-04-05,Female,40 to 49,Auckland,No,,,NA,probable
-2020-04-05,Female,10 to 14,Auckland,No,,,NA,probable
-2020-04-05,Female,15 to 19,Auckland,No,,,NA,probable
-2020-04-05,Male,30 to 39,Auckland,,,,NA,probable
-2020-04-05,Female,60 to 69,Auckland,No,,,NA,probable
-2020-04-05,Female,60 to 69,Bay of Plenty,,,,NA,probable
-2020-04-05,Female,20 to 29,Canterbury,No,,,NA,probable
-2020-04-05,Male,30 to 39,Canterbury,No,,,NA,probable
-2020-04-05,Female,30 to 39,Canterbury,No,,,NA,probable
-2020-04-05,Female,50 to 59,Counties Manukau,No,,,NA,probable
-2020-04-05,Female,15 to 19,Counties Manukau,,,,NA,probable
-2020-04-05,Female,40 to 49,Counties Manukau,,,,NA,probable
-2020-04-05,Male,60 to 69,Hawke's Bay,No,,,NA,probable
-2020-04-05,Female,15 to 19,Hutt Valley,No,,,NA,probable
-2020-04-05,Female,15 to 19,MidCentral,No,,,NA,probable
-2020-04-05,Male,70+,Nelson Marlborough,No,,,NA,probable
-2020-04-05,Female,70+,Nelson Marlborough,No,,,NA,probable
-2020-04-05,Female,10 to 14,Nelson Marlborough,No,,,NA,probable
-2020-04-05,Male,70+,Nelson Marlborough,No,,,NA,probable
-2020-04-05,Male,<1,Southern,No,,,NA,probable
-2020-04-05,Male,50 to 59,Southern,No,,,NA,probable
-2020-04-05,Female,50 to 59,Southern,No,,,NA,probable
-2020-04-05,Female,30 to 39,Waikato,Yes,,EK448,2020-03-22,probable
-2020-04-05,Female,30 to 39,Waitemata,No,,,NA,probable
-2020-04-05,Male,20 to 29,Waitemata,No,,,NA,probable
-2020-04-05,Female,50 to 59,Waitemata,No,,,NA,probable
-2020-04-05,Male,10 to 14,Waitemata,No,,,NA,probable
-2020-04-05,Male,40 to 49,West Coast,No,,,NA,probable
 2020-04-06,Female,20 to 29,Auckland,No,,,NA,confirmed
 2020-04-06,Male,50 to 59,Auckland,No,,,NA,confirmed
 2020-04-06,Female,20 to 29,Auckland,No,,,NA,confirmed
@@ -406,29 +292,6 @@ date,Sex,age_group,DHB,travel,last_country,flight,flight_date,cases
 2020-04-06,Male,30 to 39,Southern,No,,,NA,confirmed
 2020-04-06,Male,40 to 49,Waikato,No,,,NA,confirmed
 2020-04-06,Female,15 to 19,Waikato,No,,,NA,confirmed
-2020-04-06,Male,1 to 4,Auckland,No,,,NA,probable
-2020-04-06,Female,5 to 9,Auckland,No,,,NA,probable
-2020-04-06,Male,30 to 39,Auckland,,,,NA,probable
-2020-04-06,Female,40 to 49,Bay of Plenty,No,,,NA,probable
-2020-04-06,Male,30 to 39,Bay of Plenty,No,,NZ8502,NA,probable
-2020-04-06,Male,60 to 69,Canterbury,No,,,NA,probable
-2020-04-06,Male,20 to 29,Canterbury,No,,,NA,probable
-2020-04-06,Male,50 to 59,Canterbury,,,,NA,probable
-2020-04-06,Female,70+,Canterbury,No,,,NA,probable
-2020-04-06,Female,20 to 29,Canterbury,No,,,NA,probable
-2020-04-06,Male,30 to 39,Canterbury,No,,,NA,probable
-2020-04-06,Male,50 to 59,Capital and Coast,No,,,NA,probable
-2020-04-06,Male,5 to 9,Counties Manukau,No,,,NA,probable
-2020-04-06,Female,30 to 39,Counties Manukau,No,,,NA,probable
-2020-04-06,Female,50 to 59,Counties Manukau,,,,NA,probable
-2020-04-06,Male,50 to 59,Nelson Marlborough,No,,,NA,probable
-2020-04-06,Female,40 to 49,Nelson Marlborough,No,,,NA,probable
-2020-04-06,Female,20 to 29,Waikato,No,,,NA,probable
-2020-04-06,Male,50 to 59,Waikato,No,,,NA,probable
-2020-04-06,Female,50 to 59,Waikato,No,,,NA,probable
-2020-04-06,Female,30 to 39,Waikato,No,,,NA,probable
-2020-04-06,Female,15 to 19,Waikato,,,,NA,probable
-2020-04-06,Female,30 to 39,Waitemata,No,,,NA,probable
 2020-04-07,Male,50 to 59,Auckland,No,,,NA,confirmed
 2020-04-07,Male,50 to 59,Bay of Plenty,Yes,Canada,NZ23,2020-03-25,confirmed
 2020-04-07,Male,30 to 39,Canterbury,No,,,NA,confirmed
@@ -453,20 +316,6 @@ date,Sex,age_group,DHB,travel,last_country,flight,flight_date,cases
 2020-04-07,Female,50 to 59,Waitemata,No,,,NA,confirmed
 2020-04-07,Male,50 to 59,Waitemata,No,,,NA,confirmed
 2020-04-07,Male,50 to 59,Waitemata,No,,,NA,confirmed
-2020-04-07,Male,10 to 14,Auckland,No,,,NA,probable
-2020-04-07,Female,50 to 59,Auckland,No,,,NA,probable
-2020-04-07,Female,50 to 59,Canterbury,Yes,United Kingdom,,2020-03-20,probable
-2020-04-07,Female,30 to 39,Canterbury,No,,,NA,probable
-2020-04-07,Female,30 to 39,Canterbury,No,,,NA,probable
-2020-04-07,Female,50 to 59,Counties Manukau,Yes,Australia,NZ104,2020-03-19,probable
-2020-04-07,Female,10 to 14,Nelson Marlborough,No,,,NA,probable
-2020-04-07,Female,40 to 49,Nelson Marlborough,,,,NA,probable
-2020-04-07,Female,40 to 49,Southern,No,,,NA,probable
-2020-04-07,Male,20 to 29,Southern,No,,,NA,probable
-2020-04-07,Male,50 to 59,Waikato,No,,,NA,probable
-2020-04-07,Female,40 to 49,Waikato,,,SQ281,NA,probable
-2020-04-07,Female,40 to 49,Waitemata,No,,,NA,probable
-2020-04-07,Male,20 to 29,Waitemata,No,,,NA,probable
 2020-04-08,Female,50 to 59,Auckland,Yes,Qatar,,2020-03-31,confirmed
 2020-04-08,Female,30 to 39,Auckland,No,,,NA,confirmed
 2020-04-08,Female,30 to 39,Auckland,,,,NA,confirmed
@@ -484,15 +333,6 @@ date,Sex,age_group,DHB,travel,last_country,flight,flight_date,cases
 2020-04-08,Female,20 to 29,Waitemata,Yes,Canada,NZ23,2020-03-23,confirmed
 2020-04-08,Female,50 to 59,Waitemata,No,,,NA,confirmed
 2020-04-08,Female,40 to 49,Waitemata,,,,NA,confirmed
-2020-04-08,Male,40 to 49,Auckland,No,,,NA,probable
-2020-04-08,Male,30 to 39,Canterbury,Yes,Australia,,2020-03-16,probable
-2020-04-08,Female,30 to 39,Canterbury,No,,,NA,probable
-2020-04-08,Female,20 to 29,Canterbury,No,,,NA,probable
-2020-04-08,Female,20 to 29,Southern,No,,,NA,probable
-2020-04-08,Female,60 to 69,Waikato,No,,,NA,probable
-2020-04-08,Female,40 to 49,Waikato,,,,NA,probable
-2020-04-08,Female,40 to 49,Waikato,No,,,NA,probable
-2020-04-08,Female,20 to 29,Waitemata,No,,,NA,probable
 2020-04-09,Male,70+,Auckland,No,,,NA,confirmed
 2020-04-09,Male,20 to 29,Auckland,No,,,NA,confirmed
 2020-04-09,Male,20 to 29,Auckland,No,,,NA,confirmed
@@ -523,21 +363,6 @@ date,Sex,age_group,DHB,travel,last_country,flight,flight_date,cases
 2020-04-09,Male,30 to 39,Waitemata,,,,NA,confirmed
 2020-04-09,Female,10 to 14,Waitemata,No,,,NA,confirmed
 2020-04-09,Female,40 to 49,Waitemata,No,,,NA,confirmed
-2020-04-09,Male,1 to 4,Auckland,No,,,NA,probable
-2020-04-09,Male,5 to 9,Auckland,,,,NA,probable
-2020-04-09,Female,20 to 29,Auckland,,,,NA,probable
-2020-04-09,Female,1 to 4,Bay of Plenty,No,,,NA,probable
-2020-04-09,Female,1 to 4,Bay of Plenty,,,,NA,probable
-2020-04-09,Female,10 to 14,Canterbury,No,,,NA,probable
-2020-04-09,Female,10 to 14,Canterbury,,,,NA,probable
-2020-04-09,Male,40 to 49,Canterbury,,,,NA,probable
-2020-04-09,Female,20 to 29,Canterbury,No,,,NA,probable
-2020-04-09,Male,30 to 39,Canterbury,No,,,NA,probable
-2020-04-09,Female,30 to 39,Hawke's Bay,No,,,NA,probable
-2020-04-09,Male,20 to 29,Northland,No,,,NA,probable
-2020-04-09,Female,50 to 59,Southern,No,,,NA,probable
-2020-04-09,Female,20 to 29,Southern,Yes,United Kingdom,,2020-03-21,probable
-2020-04-09,Female,40 to 49,Waikato,,,,NA,probable
 2020-04-10,Female,20 to 29,Auckland,Yes,United Kingdom,,2020-03-21,confirmed
 2020-04-10,Female,20 to 29,Bay of Plenty,No,,,NA,confirmed
 2020-04-10,Female,50 to 59,Counties Manukau,Yes,Qatar,QR0920,2020-04-08,confirmed
@@ -546,26 +371,6 @@ date,Sex,age_group,DHB,travel,last_country,flight,flight_date,cases
 2020-04-10,Female,30 to 39,Waitemata,No,,,NA,confirmed
 2020-04-10,Female,20 to 29,Waitemata,Yes,United Kingdom,EK448,2020-03-25,confirmed
 2020-04-10,Female,70+,Waitemata,,,,NA,confirmed
-2020-04-10,Female,70+,Auckland,No,,,NA,probable
-2020-04-10,Female,70+,Auckland,No,,,NA,probable
-2020-04-10,Female,40 to 49,Auckland,No,,,NA,probable
-2020-04-10,Male,30 to 39,Auckland,No,,,NA,probable
-2020-04-10,Female,50 to 59,Bay of Plenty,No,,,NA,probable
-2020-04-10,Female,30 to 39,Canterbury,No,,,NA,probable
-2020-04-10,Female,50 to 59,Canterbury,No,,,NA,probable
-2020-04-10,Female,20 to 29,Hawke's Bay,Yes,Singapore,,2020-03-19,probable
-2020-04-10,Female,60 to 69,Lakes,Yes,England,CX2190,2020-03-25,probable
-2020-04-10,Male,15 to 19,Southern,No,,,NA,probable
-2020-04-10,Female,20 to 29,Southern,No,,,NA,probable
-2020-04-10,Male,20 to 29,Southern,,,,NA,probable
-2020-04-10,Female,20 to 29,Southern,No,,,NA,probable
-2020-04-10,Female,30 to 39,Southern,Yes,Australia,,2020-03-11,probable
-2020-04-10,Female,20 to 29,Waikato,No,,,NA,probable
-2020-04-10,Female,40 to 49,Waikato,,,,NA,probable
-2020-04-10,Male,30 to 39,Waitemata,No,,,NA,probable
-2020-04-10,Female,40 to 49,Waitemata,No,,,NA,probable
-2020-04-10,Female,30 to 39,Waitemata,No,,,NA,probable
-2020-04-10,Male,20 to 29,Waitemata,No,,,NA,probable
 2020-04-11,Male,30 to 39,Auckland,Yes,,,2020-03-27,confirmed
 2020-04-11,Male,50 to 59,Counties Manukau,Yes,Qatar,,2020-04-07,confirmed
 2020-04-11,Female,30 to 39,Northland,No,,,NA,confirmed
@@ -578,19 +383,6 @@ date,Sex,age_group,DHB,travel,last_country,flight,flight_date,cases
 2020-04-11,Female,10 to 14,Waitemata,No,,,NA,confirmed
 2020-04-11,Female,30 to 39,Waitemata,Yes,Canada,AC51,2020-03-25,confirmed
 2020-04-11,Female,50 to 59,Waitemata,,,,NA,confirmed
-2020-04-11,Male,40 to 49,Auckland,Yes,Qatar,,2020-03-31,probable
-2020-04-11,Female,20 to 29,Auckland,,,,NA,probable
-2020-04-11,Male,40 to 49,Canterbury,No,,,NA,probable
-2020-04-11,Female,40 to 49,Tairawhiti,Yes,Australia,,2020-03-24,probable
-2020-04-11,Male,<1,Waikato,No,,,NA,probable
-2020-04-11,Female,50 to 59,Waikato,No,,,NA,probable
-2020-04-11,Female,5 to 9,Waikato,No,,,NA,probable
-2020-04-11,Female,20 to 29,Waikato,No,,,NA,probable
-2020-04-11,Female,30 to 39,Waikato,,,,NA,probable
-2020-04-11,Female,1 to 4,Waikato,,,,NA,probable
-2020-04-11,Female,40 to 49,Waitemata,No,,,NA,probable
-2020-04-11,Female,40 to 49,Waitemata,No,,,NA,probable
-2020-04-11,Male,5 to 9,Waitemata,No,,,NA,probable
 2020-04-12,Female,10 to 14,Canterbury,No,,,NA,confirmed
 2020-04-12,Female,40 to 49,Canterbury,No,,,NA,confirmed
 2020-04-12,Female,50 to 59,Capital and Coast,No,,,NA,confirmed
@@ -602,51 +394,19 @@ date,Sex,age_group,DHB,travel,last_country,flight,flight_date,cases
 2020-04-12,Male,60 to 69,Waitemata,Yes,Qatar,QR920,2020-03-29,confirmed
 2020-04-12,Female,30 to 39,Waitemata,No,,,NA,confirmed
 2020-04-12,Female,30 to 39,Waitemata,No,,,NA,confirmed
-2020-04-12,Male,40 to 49,Auckland,,,,NA,probable
-2020-04-12,Female,40 to 49,Auckland,No,,,NA,probable
-2020-04-12,Female,40 to 49,Auckland,,,,NA,probable
-2020-04-12,Male,10 to 14,Canterbury,,,,NA,probable
-2020-04-12,Male,15 to 19,Capital and Coast,Yes,Australia,EK010,2020-03-21,probable
-2020-04-12,Female,40 to 49,Counties Manukau,,,,NA,probable
-2020-04-12,Male,20 to 29,Southern,No,,,NA,probable
-2020-04-12,Male,50 to 59,Southern,No,,,NA,probable
-2020-04-12,Male,50 to 59,Southern,No,,,NA,probable
-2020-04-12,Male,50 to 59,Southern,No,,,NA,probable
 2020-04-13,Female,60 to 69,Canterbury,No,,,NA,confirmed
 2020-04-13,Male,10 to 14,Northland,,,,NA,confirmed
 2020-04-13,Male,50 to 59,Tairawhiti,No,,,NA,confirmed
 2020-04-13,Male,70+,Waitemata,No,,,NA,confirmed
-2020-04-13,Male,70+,Auckland,No,,,NA,probable
-2020-04-13,Female,10 to 14,Southern,No,,,NA,probable
-2020-04-13,Female,70+,Waitemata,No,,,NA,probable
-2020-04-13,Female,15 to 19,Waitemata,No,,,NA,probable
-2020-04-13,Female,15 to 19,Waitemata,No,,,NA,probable
-2020-04-13,Male,10 to 14,Waitemata,No,,,NA,probable
-2020-04-13,Female,50 to 59,Waitemata,No,,,NA,probable
 2020-04-14,Female,20 to 29,Canterbury,,,,NA,confirmed
 2020-04-14,Male,60 to 69,Counties Manukau,Yes,Australia,,2020-04-12,confirmed
 2020-04-14,Female,60 to 69,Counties Manukau,Yes,Australia,,NA,confirmed
 2020-04-14,Male,50 to 59,Counties Manukau,Yes,Australia,,2020-04-12,confirmed
 2020-04-14,Female,60 to 69,Counties Manukau,No,,,NA,confirmed
 2020-04-14,Male,40 to 49,South Canterbury,No,,,NA,confirmed
-2020-04-14,Female,50 to 59,Auckland,No,,,NA,probable
-2020-04-14,Male,50 to 59,Bay of Plenty,No,,,NA,probable
-2020-04-14,Female,5 to 9,Bay of Plenty,No,,,NA,probable
-2020-04-14,Female,30 to 39,Bay of Plenty,,,,NA,probable
-2020-04-14,Male,60 to 69,Counties Manukau,No,,,NA,probable
-2020-04-14,Male,30 to 39,Southern,No,,,NA,probable
-2020-04-14,Male,50 to 59,Southern,No,,,NA,probable
-2020-04-14,Female,30 to 39,Waikato,No,,,NA,probable
 2020-04-15,Male,40 to 49,South Canterbury,No,,,NA,confirmed
 2020-04-15,Female,15 to 19,Southern,No,,,NA,confirmed
 2020-04-15,Female,70+,Waitemata,No,,,NA,confirmed
-2020-04-15,Female,60 to 69,Capital and Coast,,,,NA,probable
-2020-04-15,Male,50 to 59,Capital and Coast,,,,NA,probable
-2020-04-15,Female,40 to 49,Capital and Coast,,,,NA,probable
-2020-04-15,Male,50 to 59,MidCentral,No,,,NA,probable
-2020-04-15,Male,20 to 29,Waikato,No,,,NA,probable
-2020-04-15,Female,1 to 4,Waikato,,,,NA,probable
-2020-04-15,Male,5 to 9,Waikato,,,,NA,probable
 2020-04-16,Female,70+,Auckland,No,,,NA,confirmed
 2020-04-16,Male,70+,Counties Manukau,Yes,,,NA,confirmed
 2020-04-16,Female,60 to 69,Counties Manukau,,,,NA,confirmed
@@ -658,8 +418,6 @@ date,Sex,age_group,DHB,travel,last_country,flight,flight_date,cases
 2020-03-02,Female,30 to 39,Waitemata,Yes,Singapore,NZ283,2020-02-26,confirmed
 2020-03-04,Male,40 to 49,Waitemata,Yes,Singapore,NZ283,2020-02-26,confirmed
 2020-03-04,Male,40 to 49,Counties Manukau,No,NA,NA,NA,confirmed
-2020-03-05,Male,70+,Counties Manukau,Yes,Qatar,QR0920,2020-02-23,probable
-2020-03-05,Female,70+,Waitemata,Yes,United States of America,NZ007,2020-02-25,probable
 2020-03-06,Female,40 to 49,Counties Manukau,No,NA,NA,NA,confirmed
 2020-03-12,Male,60 to 69,Counties Manukau,Yes,United States of America,NZ29,2020-03-06,confirmed
 2020-03-13,Female,30 to 39,Southern,Yes,New Zealand,NA,2020-03-10,confirmed
@@ -683,7 +441,6 @@ date,Sex,age_group,DHB,travel,last_country,flight,flight_date,cases
 2020-03-17,Male,20 to 29,Northland,Yes,England,VA0141,2020-03-16,confirmed
 2020-03-17,Female,40 to 49,Canterbury,Yes,United Kingdom,NA,2020-03-16,confirmed
 2020-03-17,Male,15 to 19,Southern,No,NA,NA,NA,confirmed
-2020-03-17,Female,50 to 59,Southern,No,NA,NA,NA,probable
 2020-03-18,Male,40 to 49,Southern,Yes,Australia,NA,2020-03-10,confirmed
 2020-03-18,Male,60 to 69,Southern,Yes,Australia,NA,2020-03-13,confirmed
 2020-03-18,Male,50 to 59,Capital and Coast,Yes,United Arab Emirates,QF161,2020-03-14,confirmed
@@ -702,11 +459,9 @@ date,Sex,age_group,DHB,travel,last_country,flight,flight_date,cases
 2020-03-19,Female,60 to 69,Waikato,Yes,France,EK0450,2020-03-17,confirmed
 2020-03-19,Female,70+,Waikato,Yes,France,EK0450,2020-03-17,confirmed
 2020-03-19,Female,30 to 39,Southern,Yes,England,NA,2020-03-17,confirmed
-2020-03-19,Female,50 to 59,Auckland,Yes,United Kingdom,NA,2020-03-17,probable
 2020-03-19,Male,40 to 49,Counties Manukau,No,NA,NA,NA,confirmed
 2020-03-19,Female,30 to 39,MidCentral,No,NA,NA,NA,confirmed
 2020-03-19,Male,30 to 39,Wairarapa,No,NA,NA,NA,confirmed
-2020-03-19,Male,50 to 59,Auckland,No,NA,NA,NA,probable
 2020-03-20,Male,50 to 59,Lakes,Yes,United Arab Emirates,EK0448,2020-03-12,confirmed
 2020-03-20,Female,30 to 39,Waitemata,Yes,United States of America,AA83,2020-03-14,confirmed
 2020-03-20,Female,60 to 69,Waikato,Yes,Singapore,SQ285,2020-03-15,confirmed
@@ -750,7 +505,6 @@ date,Sex,age_group,DHB,travel,last_country,flight,flight_date,cases
 2020-03-22,Female,40 to 49,Waitemata,Yes,United States of America,NA,2020-03-16,confirmed
 2020-03-22,Male,40 to 49,Counties Manukau,Yes,United Arab Emirates,EK448,2020-03-16,confirmed
 2020-03-22,Female,50 to 59,Waikato,Yes,United Arab Emirates,EK448,2020-03-16,confirmed
-2020-03-22,Male,50 to 59,Waikato,Yes,United Arab Emirates,BEKA76,2020-03-16,probable
 2020-03-22,Male,40 to 49,Capital and Coast,Yes,United States of America,NZ421,2020-03-16,confirmed
 2020-03-22,Male,60 to 69,West Coast,No,NA,JQ27,2020-03-17,confirmed
 2020-03-22,Male,40 to 49,Counties Manukau,Yes,United States of America,AA3,2020-03-18,confirmed
@@ -783,10 +537,6 @@ date,Sex,age_group,DHB,travel,last_country,flight,flight_date,cases
 2020-03-22,Female,50 to 59,Southern,No,NA,NA,NA,confirmed
 2020-03-22,Male,70+,Waikato,No,NA,NA,NA,confirmed
 2020-03-22,Female,40 to 49,Waitemata,No,NA,NA,NA,confirmed
-2020-03-22,Female,15 to 19,Auckland,No,NA,NA,NA,probable
-2020-03-22,Female,15 to 19,Canterbury,No,NA,NA,NA,probable
-2020-03-22,Female,40 to 49,Capital and Coast,No,NA,NA,NA,probable
-2020-03-22,Male,60 to 69,Capital and Coast,No,NA,NA,NA,probable
 2020-03-23,Female,40 to 49,Waikato,Yes,Philippines,NA,2020-03-08,confirmed
 2020-03-23,Female,20 to 29,Canterbury,Yes,United Kingdom,NA,2020-03-13,confirmed
 2020-03-23,Male,40 to 49,Hutt Valley,Yes,Australia,VA171,2020-03-13,confirmed
@@ -814,7 +564,6 @@ date,Sex,age_group,DHB,travel,last_country,flight,flight_date,cases
 2020-03-23,Male,50 to 59,Waikato,Yes,Thailand,NA,2020-03-22,confirmed
 2020-03-23,Female,60 to 69,Waitemata,Yes,Australia,NA,2020-03-22,confirmed
 2020-03-23,Female,30 to 39,Lakes,Yes,United Arab Emirates,EK448,2020-03-23,confirmed
-2020-03-23,Female,20 to 29,Canterbury,Yes,Australia,NA,2020-03-23,probable
 2020-03-23,Female,15 to 19,Auckland,No,NA,NA,NA,confirmed
 2020-03-23,Male,50 to 59,Canterbury,No,NA,NA,NA,confirmed
 2020-03-23,Male,50 to 59,Canterbury,No,NA,NA,NA,confirmed
@@ -826,8 +575,6 @@ date,Sex,age_group,DHB,travel,last_country,flight,flight_date,cases
 2020-03-23,Male,30 to 39,Southern,No,NA,NA,NA,confirmed
 2020-03-23,Male,50 to 59,Waikato,No,NA,NA,NA,confirmed
 2020-03-23,Female,30 to 39,Waitemata,NA,NA,NA,NA,confirmed
-2020-03-23,Female,60 to 69,Capital and Coast,No,NA,NA,NA,probable
-2020-03-23,Male,15 to 19,Hutt Valley,No,NA,NA,NA,probable
 2020-03-24,Female,20 to 29,MidCentral,Yes,Australia,JQ278,2020-03-06,confirmed
 2020-03-24,Male,50 to 59,Canterbury,Yes,Vietnam,NA,2020-03-13,confirmed
 2020-03-24,Male,60 to 69,Nelson Marlborough,Yes,United States of America,NZ5065,2020-03-16,confirmed
@@ -882,12 +629,6 @@ date,Sex,age_group,DHB,travel,last_country,flight,flight_date,cases
 2020-03-24,Female,50 to 59,Waitemata,No,NA,NA,NA,confirmed
 2020-03-24,Female,30 to 39,Waitemata,No,NA,NA,NA,confirmed
 2020-03-24,Female,40 to 49,Waitemata,NA,NA,NA,NA,confirmed
-2020-03-24,Male,40 to 49,Bay of Plenty,No,NA,NA,NA,probable
-2020-03-24,Female,20 to 29,Bay of Plenty,NA,NA,NA,NA,probable
-2020-03-24,Female,50 to 59,Nelson Marlborough,NA,NA,NA,NA,probable
-2020-03-24,Female,60 to 69,Nelson Marlborough,NA,NA,NA,NA,probable
-2020-03-24,Female,15 to 19,Waitemata,No,NA,NA,NA,probable
-2020-03-25,Female,20 to 29,Waikato,Yes,Australia,NA,2020-03-01,probable
 2020-03-25,Male,60 to 69,Nelson Marlborough,Yes,Hong Kong,NA,2020-03-05,confirmed
 2020-03-25,Male,50 to 59,Waikato,Yes,Philippines,NA,2020-03-07,confirmed
 2020-03-25,Female,70+,Waikato,Yes,Philippines,NA,2020-03-08,confirmed
@@ -936,7 +677,6 @@ date,Sex,age_group,DHB,travel,last_country,flight,flight_date,cases
 2020-03-25,Female,20 to 29,Canterbury,Yes,Australia,EK412,2020-03-24,confirmed
 2020-03-25,Male,20 to 29,Capital and Coast,Yes,Canada,NZ411,2020-03-24,confirmed
 2020-03-25,Female,20 to 29,Lakes,Yes,Switzerland,QR920,2020-03-24,confirmed
-2020-03-25,Male,20 to 29,MidCentral,No,NA,NZ526,2020-03-25,probable
 2020-03-25,Female,30 to 39,Auckland,No,NA,NA,NA,confirmed
 2020-03-25,Female,60 to 69,Auckland,No,NA,NA,NA,confirmed
 2020-03-25,Female,15 to 19,Auckland,NA,NA,NA,NA,confirmed
@@ -969,13 +709,10 @@ date,Sex,age_group,DHB,travel,last_country,flight,flight_date,cases
 2020-03-25,Female,30 to 39,Waitemata,No,NA,NA,NA,confirmed
 2020-03-25,Female,20 to 29,Waitemata,No,NA,NA,NA,confirmed
 2020-03-25,Female,30 to 39,Waitemata,No,NA,NA,NA,confirmed
-2020-03-25,Female,40 to 49,Canterbury,No,NA,NA,NA,probable
-2020-03-25,Female,20 to 29,Waitemata,No,NA,NA,NA,probable
 2020-03-26,Female,70+,Waikato,Yes,Philippines,PR218,2020-03-06,confirmed
 2020-03-26,Male,20 to 29,West Coast,Yes,Australia,NA,2020-03-12,confirmed
 2020-03-26,Female,30 to 39,Canterbury,Yes,Australia,QF139,2020-03-15,confirmed
 2020-03-26,Female,1 to 4,Canterbury,Yes,Australia,NA,2020-03-15,confirmed
-2020-03-26,Female,60 to 69,Waitemata,Yes,Indonesia,NA,2020-03-15,probable
 2020-03-26,Male,60 to 69,Waikato,Yes,United Arab Emirates,EK0448,2020-03-16,confirmed
 2020-03-26,Male,70+,Southern,Yes,Switzerland,JQ295,2020-03-16,confirmed
 2020-03-26,Female,30 to 39,Auckland,Yes,Ireland,NA,2020-03-16,confirmed
@@ -987,17 +724,12 @@ date,Sex,age_group,DHB,travel,last_country,flight,flight_date,cases
 2020-03-26,Male,40 to 49,Waikato,Yes,Thailand,TG491,2020-03-18,confirmed
 2020-03-26,Male,40 to 49,Waitemata,Yes,Australia,QF143,2020-03-18,confirmed
 2020-03-26,Male,60 to 69,Waikato,Yes,Qatar,QR920,2020-03-19,confirmed
-2020-03-26,Female,60 to 69,Nelson Marlborough,Yes,United Arab Emirates,EK448,2020-03-19,probable
-2020-03-26,Female,60 to 69,Northland,Yes,United States of America,NA,2020-03-19,probable
 2020-03-26,Female,20 to 29,Capital and Coast,Yes,United States of America,NZ409,2020-03-19,confirmed
 2020-03-26,Female,50 to 59,Hutt Valley,Yes,Indonesia,NZ409,2020-03-19,confirmed
-2020-03-26,Female,50 to 59,Capital and Coast,Yes,United States of America,NZ409,2020-03-19,probable
 2020-03-26,Male,30 to 39,Canterbury,Yes,Japan,NA,2020-03-19,confirmed
 2020-03-26,Female,20 to 29,Waitemata,Yes,Malaysia,NA,2020-03-19,confirmed
 2020-03-26,Male,50 to 59,Waitemata,Yes,United States of America,NA,2020-03-19,confirmed
 2020-03-26,Male,50 to 59,Waitemata,Yes,United States of America,NA,2020-03-19,confirmed
-2020-03-26,Male,50 to 59,Canterbury,Yes,United States of America,NA,2020-03-19,probable
-2020-03-26,Female,60 to 69,Waitemata,Yes,United States of America,NA,2020-03-19,probable
 2020-03-26,Male,50 to 59,Tairawhiti,Yes,United States of America,NZ8161,2020-03-20,confirmed
 2020-03-26,Male,20 to 29,Canterbury,Yes,United States of America,UA0917,2020-03-20,confirmed
 2020-03-26,Female,30 to 39,Canterbury,Yes,Australia,EK412,2020-03-20,confirmed
@@ -1011,7 +743,6 @@ date,Sex,age_group,DHB,travel,last_country,flight,flight_date,cases
 2020-03-26,Female,15 to 19,Waikato,Yes,Canada,NZ23,2020-03-22,confirmed
 2020-03-26,Female,50 to 59,Counties Manukau,Yes,United States of America,NA,2020-03-22,confirmed
 2020-03-26,Female,60 to 69,Southern,Yes,Argentina,NA,2020-03-22,confirmed
-2020-03-26,Female,15 to 19,Taranaki,Yes,United Kingdom,NA,2020-03-22,probable
 2020-03-26,Female,20 to 29,Waitemata,Yes,United States of America,NA,2020-03-23,confirmed
 2020-03-26,Female,20 to 29,Auckland,Yes,United States of America,NZ5,2020-03-24,confirmed
 2020-03-26,Female,20 to 29,Bay of Plenty,Yes,England,EKO068,2020-03-24,confirmed
@@ -1046,11 +777,6 @@ date,Sex,age_group,DHB,travel,last_country,flight,flight_date,cases
 2020-03-26,Female,40 to 49,Waitemata,No,NA,NA,NA,confirmed
 2020-03-26,Female,30 to 39,Waitemata,No,NA,NA,NA,confirmed
 2020-03-26,Female,70+,West Coast,No,NA,NA,NA,confirmed
-2020-03-26,Female,30 to 39,Auckland,No,NA,NA,NA,probable
-2020-03-26,Female,30 to 39,Bay of Plenty,No,NA,NA,NA,probable
-2020-03-26,Female,40 to 49,Canterbury,No,NA,NA,NA,probable
-2020-03-26,Female,20 to 29,Canterbury,No,NA,NA,NA,probable
-2020-03-26,Female,5 to 9,Waitemata,NA,NA,NA,NA,probable
 2020-03-27,Female,50 to 59,MidCentral,Yes,United States of America,NZ1,2020-03-12,confirmed
 2020-03-27,Male,50 to 59,Southern,Yes,NA,NA,2020-03-14,confirmed
 2020-03-27,Male,30 to 39,Waitemata,Yes,United States of America,NA,2020-03-16,confirmed
@@ -1058,10 +784,7 @@ date,Sex,age_group,DHB,travel,last_country,flight,flight_date,cases
 2020-03-27,Male,70+,Bay of Plenty,No,NA,NZ674,2020-03-17,confirmed
 2020-03-27,Male,50 to 59,Taranaki,Yes,NA,NA,2020-03-18,confirmed
 2020-03-27,Male,40 to 49,Bay of Plenty,No,NA,nz8800,2020-03-18,confirmed
-2020-03-27,Female,30 to 39,Canterbury,Yes,United Kingdom,EK412,2020-03-19,probable
-2020-03-27,Male,30 to 39,Canterbury,Yes,United Kingdom,EK412,2020-03-19,probable
 2020-03-27,Female,40 to 49,Counties Manukau,Yes,United States of America,NA,2020-03-19,confirmed
-2020-03-27,Male,20 to 29,Waitemata,Yes,Malaysia,NA,2020-03-19,probable
 2020-03-27,Female,20 to 29,South Canterbury,Yes,NA,OA4326,2020-03-20,confirmed
 2020-03-27,Female,70+,Auckland,Yes,Chile,LA801,2020-03-20,confirmed
 2020-03-27,Female,60 to 69,Hutt Valley,Yes,Singapore,NZ441,2020-03-20,confirmed
@@ -1124,8 +847,6 @@ date,Sex,age_group,DHB,travel,last_country,flight,flight_date,cases
 2020-03-27,Female,30 to 39,Waikato,No,NA,NA,NA,confirmed
 2020-03-27,Male,50 to 59,Waikato,No,NA,NA,NA,confirmed
 2020-03-27,Female,30 to 39,Waikato,No,NA,NA,NA,confirmed
-2020-03-27,Female,50 to 59,Auckland,No,NA,NA,NA,probable
-2020-03-27,Female,40 to 49,Canterbury,No,NA,NA,NA,probable
 2020-03-28,Male,40 to 49,Waitemata,Yes,United Kingdom,NA,2020-03-15,confirmed
 2020-03-28,Male,30 to 39,Canterbury,Yes,France,NA,2020-03-16,confirmed
 2020-03-28,Male,30 to 39,Nelson Marlborough,Yes,United Arab Emirates,NA,2020-03-16,confirmed
@@ -1189,26 +910,17 @@ date,Sex,age_group,DHB,travel,last_country,flight,flight_date,cases
 2020-03-28,Male,20 to 29,Waitemata,NA,NA,NA,NA,confirmed
 2020-03-28,Female,10 to 14,Waitemata,No,NA,NA,NA,confirmed
 2020-03-28,Female,15 to 19,Waitemata,No,NA,NA,NA,confirmed
-2020-03-28,Female,40 to 49,Auckland,No,NA,NA,NA,probable
-2020-03-28,Female,20 to 29,Canterbury,No,NA,NA,NA,probable
-2020-03-28,Female,20 to 29,Canterbury,No,NA,NA,NA,probable
-2020-03-28,Female,40 to 49,Canterbury,No,NA,NA,NA,probable
-2020-03-28,Male,50 to 59,Canterbury,No,NA,NA,NA,probable
-2020-03-28,Female,<1,Counties Manukau,NA,NA,NA,NA,probable
-2020-03-29,Female,30 to 39,Capital and Coast,Yes,United Arab Emirates,EK448,2020-03-18,probable
 2020-03-29,Male,40 to 49,Auckland,Yes,Australia,QF141,2020-03-18,confirmed
 2020-03-29,Female,30 to 39,MidCentral,Yes,NA,NZ5107,2020-03-18,confirmed
 2020-03-29,Female,50 to 59,Waikato,Yes,Australia,NA,2020-03-18,confirmed
 2020-03-29,Male,20 to 29,Waitemata,Yes,Australia,NA,2020-03-18,confirmed
 2020-03-29,Male,20 to 29,Counties Manukau,Yes,United Arab Emirates,EK448,2020-03-19,confirmed
 2020-03-29,Female,40 to 49,MidCentral,Yes,Australia,NZ842,2020-03-19,confirmed
-2020-03-29,Male,30 to 39,MidCentral,Yes,Australia,NZ824,2020-03-19,probable
 2020-03-29,Male,60 to 69,Auckland,Yes,Malaysia,NA,2020-03-19,confirmed
 2020-03-29,Female,20 to 29,Nelson Marlborough,Yes,New Zealand,NZ5069,2020-03-19,confirmed
 2020-03-29,Female,60 to 69,Waitemata,Yes,Qatar,NA,2020-03-19,confirmed
 2020-03-29,Female,20 to 29,Waitemata,Yes,Chile,LA801,2020-03-20,confirmed
 2020-03-29,Male,50 to 59,Waitemata,Yes,United States of America,NA,2020-03-20,confirmed
-2020-03-29,Female,70+,Waitemata,Yes,Australia,NA,2020-03-20,probable
 2020-03-29,Female,20 to 29,Capital and Coast,Yes,United Arab Emirates,NZ433,2020-03-21,confirmed
 2020-03-29,Male,20 to 29,Waitemata,Yes,NA,NA,2020-03-21,confirmed
 2020-03-29,Male,20 to 29,Waitemata,Yes,Qatar,QR920,2020-03-22,confirmed
@@ -1266,18 +978,12 @@ date,Sex,age_group,DHB,travel,last_country,flight,flight_date,cases
 2020-03-29,Male,40 to 49,Waitemata,No,NA,NA,NA,confirmed
 2020-03-29,Female,15 to 19,Waitemata,NA,NA,NA,NA,confirmed
 2020-03-29,Female,15 to 19,Waitemata,NA,NA,NA,NA,confirmed
-2020-03-29,Male,60 to 69,Auckland,No,NA,NA,NA,probable
-2020-03-29,Female,50 to 59,Canterbury,No,NA,NA,NA,probable
-2020-03-29,Female,70+,South Canterbury,No,NA,NA,NA,probable
-2020-03-29,Female,20 to 29,Waitemata,NA,NA,NA,NA,probable
 2020-03-30,Male,30 to 39,Hawke's Bay,No,NA,NZ5011,2020-03-15,confirmed
-2020-03-30,Male,20 to 29,Waitemata,Yes,Australia,QF141,2020-03-18,probable
 2020-03-30,Female,20 to 29,Nelson Marlborough,Yes,Australia,NZ8857,2020-03-19,confirmed
 2020-03-30,Male,40 to 49,Counties Manukau,Yes,United States of America,NA,2020-03-19,confirmed
 2020-03-30,Male,30 to 39,South Canterbury,Yes,England,NA,2020-03-20,confirmed
 2020-03-30,Female,20 to 29,Waitemata,Yes,NA,LA801,2020-03-20,confirmed
 2020-03-30,Female,40 to 49,Bay of Plenty,No,NA,NZ627,2020-03-20,confirmed
-2020-03-30,Male,20 to 29,Waitemata,Yes,NA,NA,2020-03-20,probable
 2020-03-30,Female,30 to 39,Canterbury,Yes,United States of America,NZ527,2020-03-21,confirmed
 2020-03-30,Male,20 to 29,Southern,Yes,United Arab Emirates,NA,2020-03-21,confirmed
 2020-03-30,Female,20 to 29,Taranaki,Yes,United Kingdom,NA,2020-03-21,confirmed
@@ -1314,15 +1020,6 @@ date,Sex,age_group,DHB,travel,last_country,flight,flight_date,cases
 2020-03-30,Male,20 to 29,Waitemata,NA,NA,NA,NA,confirmed
 2020-03-30,Female,40 to 49,Waitemata,NA,NA,NA,NA,confirmed
 2020-03-30,Female,20 to 29,Waitemata,NA,NA,NA,NA,confirmed
-2020-03-30,Male,50 to 59,Auckland,NA,NA,NA,NA,probable
-2020-03-30,Female,10 to 14,Capital and Coast,No,NA,NA,NA,probable
-2020-03-30,Male,1 to 4,Counties Manukau,No,NA,NA,NA,probable
-2020-03-30,Male,60 to 69,Counties Manukau,No,NA,NA,NA,probable
-2020-03-30,Female,20 to 29,Nelson Marlborough,No,NA,NA,NA,probable
-2020-03-30,Male,30 to 39,Waikato,No,NA,NA,NA,probable
-2020-03-30,Male,30 to 39,Waitemata,NA,NA,NA,NA,probable
-2020-03-30,Male,20 to 29,Waitemata,NA,NA,NA,NA,probable
-2020-03-31,Male,20 to 29,Waitemata,Yes,United States of America,NA,2020-03-18,probable
 2020-03-31,Female,60 to 69,Waikato,Yes,United Kingdom,EK0448,2020-03-20,confirmed
 2020-03-31,Male,50 to 59,Southern,Yes,Australia,NZ5717,2020-03-20,confirmed
 2020-03-31,Female,30 to 39,Counties Manukau,Yes,Singapore,NA,2020-03-20,confirmed
@@ -1336,7 +1033,6 @@ date,Sex,age_group,DHB,travel,last_country,flight,flight_date,cases
 2020-03-31,Female,40 to 49,Auckland,Yes,Australia,NA,2020-03-23,confirmed
 2020-03-31,Female,20 to 29,Waikato,Yes,England,EK448,2020-03-23,confirmed
 2020-03-31,Male,10 to 14,Capital and Coast,No,NA,JS278,2020-03-23,confirmed
-2020-03-31,Male,20 to 29,Auckland,Yes,United States of America,NA,2020-03-23,probable
 2020-03-31,Female,50 to 59,Bay of Plenty,Yes,United Kingdom,EK0448,2020-03-24,confirmed
 2020-03-31,Female,30 to 39,Auckland,Yes,United Arab Emirates,NA,2020-03-24,confirmed
 2020-03-31,Male,70+,Bay of Plenty,Yes,United States of America,NA,2020-03-24,confirmed
@@ -1347,7 +1043,6 @@ date,Sex,age_group,DHB,travel,last_country,flight,flight_date,cases
 2020-03-31,Male,20 to 29,Counties Manukau,Yes,Canada,nz23,2020-03-26,confirmed
 2020-03-31,Female,20 to 29,Wairarapa,Yes,Qatar,QR920,2020-03-27,confirmed
 2020-03-31,Female,30 to 39,Canterbury,No,NA,NZ5100,2020-03-28,confirmed
-2020-03-31,Female,70+,Bay of Plenty,NA,NA,NZ674,2020-03-17,probable
 2020-03-31,Female,40 to 49,Auckland,No,NA,NA,NA,confirmed
 2020-03-31,Female,20 to 29,Auckland,NA,NA,NA,NA,confirmed
 2020-03-31,Female,70+,Canterbury,No,NA,NA,NA,confirmed
@@ -1388,14 +1083,3 @@ date,Sex,age_group,DHB,travel,last_country,flight,flight_date,cases
 2020-03-31,Female,40 to 49,Waitemata,No,NA,NA,NA,confirmed
 2020-03-31,Female,10 to 14,Waitemata,No,NA,NA,NA,confirmed
 2020-03-31,Female,60 to 69,Waitemata,NA,NA,NA,NA,confirmed
-2020-03-31,Male,20 to 29,Auckland,No,NA,NA,NA,probable
-2020-03-31,Female,20 to 29,Auckland,No,NA,NA,NA,probable
-2020-03-31,Male,60 to 69,Auckland,No,NA,NA,NA,probable
-2020-03-31,Female,40 to 49,Canterbury,No,NA,NA,NA,probable
-2020-03-31,Male,20 to 29,Counties Manukau,No,NA,NA,NA,probable
-2020-03-31,Male,20 to 29,Counties Manukau,No,NA,NA,NA,probable
-2020-03-31,Female,10 to 14,Southern,No,NA,NA,NA,probable
-2020-03-31,Female,1 to 4,Southern,No,NA,NA,NA,probable
-2020-03-31,Male,30 to 39,Waikato,No,NA,NA,NA,probable
-2020-03-31,Male,40 to 49,Waitemata,NA,NA,NA,NA,probable
-2020-03-31,Female,10 to 14,Waitemata,No,NA,NA,NA,probable
