@@ -29,7 +29,6 @@ nz_moh <- "https://www.health.govt.nz/our-work/diseases-and-conditions/covid-19-
 library(rvest)
 library(xml2)
 library(lubridate)
-library(tidyverse)
 
 nz_moh_cases <- read_html(nz_moh) %>%
   html_nodes("table") %>%
@@ -60,8 +59,7 @@ nz_moh <- bind_rows(nz_moh_cases, nz_moh_probable) %>%
   #mutate(date = ifelse(date == max(date),  max(date) - 1 , date )) %>%
   #mutate(date = as_date(date)) %>% 
   arrange(date) %>% 
-  bind_rows(.,nz_march) %>% 
-  filter(cases == "confirmed")
+  bind_rows(.,nz_march)
   
 
 write_csv(nz_moh, "data/nz_moh.csv")

@@ -32,7 +32,7 @@ library(ggthemes)
 #------------------ Parameters ------------------
 # cases today
 nzcases = 0
-nzdeaths = 9
+nzdeaths = 11
 
 today = format(Sys.time()-24*60*60, "%Y-%m-%d")
 options("scipen"=100, "digits"=6)
@@ -81,7 +81,7 @@ Updates likely 9am NZDT with the over night European data. Just after 1pm NZDT w
 ![](images/2019_nCoV.png){ width=100% }
 
 **Friday April 17th** (d23)  
-For all those saying Australia is better, yeah nah, New Zealand are the only country to count probables. So for this morning, I deleted the probables. 
+Wet day, 2 more cases.
 
 **Thursday April 16th** (d22)  
 Losing track of time, no one likes a log log per capita graph cos it shows we should be less restrictive. 3-5 actual cases the last couple of days. How the probables can outstrip the actuals I do not know, but as the actuals go down the probables haven't as much, funny counting????
