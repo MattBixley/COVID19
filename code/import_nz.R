@@ -47,7 +47,7 @@ nz_march <- read_csv("data/nz_moh_march.csv") %>%
 
 nz_moh <- bind_rows(nz_moh_cases, nz_moh_probable) %>% 
   rename(date = "Date of report", last_country = "Last country before return", flight = "Flight number",
-         flight_date = "Arrival date", age_group = "Age group", travel = "International travel", 
+         flight_date = "Arrival date", age_group = "Age group", travel = "Overseas travel", 
          flight_dep_date = "Flight departure date") %>% 
   
   # deal with flights and merge to one date, last known date
