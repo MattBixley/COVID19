@@ -32,7 +32,7 @@ library(ggthemes)
 #------------------ Parameters ------------------
 # cases today
 nzcases = 0
-nzdeaths = 16
+nzdeaths = 17
 
 today = format(Sys.time()-24*60*60, "%Y-%m-%d")
 options("scipen"=100, "digits"=6)
@@ -79,6 +79,9 @@ __**The Lockdown Diaries**__
 Updates likely 9am NZDT with the over night European data. Just after 1pm NZDT with the New Zealand daily news and sometime in the evening.  
 
 ![](images/2019_nCoV.png){ width=100% }
+
+**Friday April 24th** (d30)  
+While I may be about to run my 1st 100k week in sometime, I have also been upping the numbers on the scales, FFS. 
 
 **Friday April 17th** (d23)  
 Wet day, 2 more cases.
