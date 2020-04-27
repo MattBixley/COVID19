@@ -32,7 +32,7 @@ library(ggthemes)
 #------------------ Parameters ------------------
 # cases today
 nzcases = 0
-nzdeaths = 17
+nzdeaths = 19
 
 today = format(Sys.time()-24*60*60, "%Y-%m-%d")
 options("scipen"=100, "digits"=6)
@@ -80,8 +80,15 @@ Updates likely 9am NZDT with the over night European data. Just after 1pm NZDT w
 
 ![](images/2019_nCoV.png){ width=100% }
 
+**Monday April 28th** (d33)  
+Last day of Level 4 Jail, although I think Level 3 jail will be about the same. I did however discover ReBurger will be open and I WILL partake of that.
+My rage with expedia paid off as after two calls and hang ups one by them one by me, my calls were reviewed and indeed I was correct and I have a full refund. Muppets, that is why I rang, because the travel advisory from Qantas was a month old.  
+Please may we stay locked up for another month or two. I am happy.
+
+**Sunday April 27th** (d32)  
+
 **Saturday April 25th** (d31)  
-after two weeks semi-trying today is my first real effort at trying to cancel flights with expedia, there is a lot of rage currently.
+After two weeks semi-trying today is my first real effort at trying to cancel flights with expedia, there is a lot of rage currently.
 
 **Friday April 24th** (d30)  
 While I may be about to run my 1st 100k week in sometime, I have also been upping the numbers on the scales, FFS. 
