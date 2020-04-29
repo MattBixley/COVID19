@@ -59,10 +59,16 @@ nz_moh <- bind_rows(nz_moh_cases, nz_moh_probable) %>%
   #mutate(date = ifelse(date == max(date),  max(date) - 1 , date )) %>%
   #mutate(date = as_date(date)) %>% 
   arrange(date) %>% 
-  bind_rows(.,nz_march)
-  
+  bind_rows(.,nz_march) %>% 
+  mutate(DHB = str_replace(DHB,"Waitemat.", 'Waitematā'))
 
 write_csv(nz_moh, "data/nz_moh.csv")
+
+nz_moh_wai <- read_csv("data/nz_moh.csv") %>%
+  mutate(DHB = ifelse(DHB == "WaitematÄ", "Wai", DHB)) %>% 
+  #mutate(DHB = ifelse(DHB == "Wai", "Waitemata", DHB)) %>% 
+  filter(DHB == "Wai")
+
 
 # reconstruct the ecdc data for NZ
 nz_moh_short <- nz_moh %>% 
