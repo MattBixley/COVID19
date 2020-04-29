@@ -307,3 +307,25 @@ animate(
   renderer = gifski_renderer()
 )
 
+
+### days since case by dhb
+days_since <- nz_moh %>% select(date, DHB) %>% 
+  group_by(DHB, date) %>% 
+  count() %>% 
+  pivot_wider(., names_from = DHB, values_from = n) %>% 
+  pivot_longer(-date, names_to = "DHB", values_to = "cases") %>%
+  filter(cases > 0) %>% 
+  group_by(DHB) %>%
+  filter(date == max(date)) %>% 
+  mutate(last = as.numeric(today() - date) - 1)
+
+library(DHBins)
+p7 <- ggplot(days_since)+
+  geom_dhb(aes(fill = last, map_id=dhb_fixname(DHB))) +
+  scale_fill_gradient(low = low, high = high, name = "Count") +
+  geom_label_dhb(short=F,colour="black") +
+  labs(title = "Days since last case", caption = "Source: MOH") +
+  theme_void() +
+  theme(legend.position="right") +
+  theme(title = element_text(size=10, face='bold'))
+p7

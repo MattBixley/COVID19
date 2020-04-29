@@ -255,6 +255,10 @@ Column
 
 
 ### **Notes** 
+
+April 30th - Days since the last case added
+
+
 April 7th - Added a tab for [**New Zealand DHBs**](#new-zealand), I'm a fan of the Hex Bins created by [Thomas Lumley](https://www.statschat.org.nz/). He is a bit of a guru in the NZ Stats world with some very interesting comments. Many moons ago he gave us a 1 day course in R at AgResearch.
 
 April 6th - the family keep asking for local numbers, they are hard to find in a reproducible way.  
@@ -301,7 +305,32 @@ p1 + mytheme + labs(caption = "Source: ECDC") +
 ```
 
   
-### **Per Capita Cases**  
+### **Cases**  
+
+```{r, lastcase}
+### days since case by dhb
+days_since <- nz_moh %>% select(date, DHB) %>% 
+  group_by(DHB, date) %>% 
+  count() %>% 
+  pivot_wider(., names_from = DHB, values_from = n) %>% 
+  pivot_longer(-date, names_to = "DHB", values_to = "cases") %>%
+  filter(cases > 0) %>% 
+  group_by(DHB) %>%
+  filter(date == max(date)) %>% 
+  mutate(last = as.numeric(today() - date) - 1)
+
+library(DHBins)
+p7 <- ggplot(days_since)+
+  geom_dhb(aes(fill = last, map_id=dhb_fixname(DHB))) +
+  scale_fill_gradient(low = low, high = high, name = "Count") +
+  geom_label_dhb(short=F,colour="black") +
+  labs(title = "Days since last case", caption = "Source: MOH") +
+  theme_void() +
+  theme(legend.position="right") +
+  theme(title = element_text(size=10, face='bold'))
+
+p7
+```
 
 ```{r, loglog, fig.width=12, fig.height=8, fig.align='center'}
 # log log of percapita nz growth
