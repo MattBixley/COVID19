@@ -330,9 +330,9 @@ p7 <- ggplot(days_since)+
   theme(title = element_text(size=10, face='bold'))
 
 p7
-```
+#```
 
-```{r, loglog, fig.width=12, fig.height=8, fig.align='center'}
+#```{r, loglog, fig.width=12, fig.height=8, fig.align='center'}
 # log log of percapita nz growth
 # gganimate, should show fall off in incidence when effective measure take over
 
