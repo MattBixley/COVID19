@@ -45,6 +45,9 @@ nz_moh_probable <- read_html(nz_moh) %>%
 nz_march <- read_csv("data/nz_moh_march.csv") %>% 
   mutate(date = dmy(date), flight_date = dmy(flight_date))
 
+nz_april <- read_csv("data/nz_moh_april.csv") %>% 
+  mutate(date = dmy(date), flight_date = dmy(flight_date))
+
 nz_moh <- bind_rows(nz_moh_cases, nz_moh_probable) %>% 
   rename(date = "Date of report", last_country = "Last country before return", flight = "Flight number",
          flight_date = "Arrival date", age_group = "Age group", travel = "Overseas travel", 
@@ -60,15 +63,9 @@ nz_moh <- bind_rows(nz_moh_cases, nz_moh_probable) %>%
   #mutate(date = as_date(date)) %>% 
   arrange(date) %>% 
   bind_rows(.,nz_march) %>% 
-  mutate(DHB = str_replace(DHB,"Waitemat.", 'Waitematā'))
+  mutate(DHB = str_replace(DHB,"Waitemat.", 'Waitemata'))
 
 write_csv(nz_moh, "data/nz_moh.csv")
-
-nz_moh_wai <- read_csv("data/nz_moh.csv") %>%
-  mutate(DHB = ifelse(DHB == "WaitematÄ", "Wai", DHB)) %>% 
-  #mutate(DHB = ifelse(DHB == "Wai", "Waitemata", DHB)) %>% 
-  filter(DHB == "Wai")
-
 
 # reconstruct the ecdc data for NZ
 nz_moh_short <- nz_moh %>% 
