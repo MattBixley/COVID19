@@ -32,7 +32,7 @@ library(ggthemes)
 #------------------ Parameters ------------------
 # cases today
 nzcases = 0
-nzdeaths = 19
+nzdeaths = 20
 
 today = format(Sys.time()-24*60*60, "%Y-%m-%d")
 options("scipen"=100, "digits"=6)
@@ -80,8 +80,13 @@ Updates likely 9am NZDT with the over night European data. Just after 1pm NZDT w
 
 ![](images/2019_nCoV.png){ width=100% }
 
-**Monday May 4th** (d40)
-May the Force be With You
+**Tuesday May 5th** (d41)  
+8am, light the fire.
+
+**Monday May 4th** (d40)  
+May the Force be With You.  
+1st day no new cases.  
+Start of consecutive 100k training weeks (I hope).
 
 **Monday April 28th** (d33)  
 Last day of Level 4 Jail, although I think Level 3 jail will be about the same. I did however discover ReBurger will be open and I WILL partake of that.
