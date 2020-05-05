@@ -80,6 +80,9 @@ Updates likely 9am NZDT with the over night European data. Just after 1pm NZDT w
 
 ![](images/2019_nCoV.png){ width=100% }
 
+**Wednesday May 6th** (d42)  
+I'm the only to have been outside since Sunday  
+
 **Tuesday May 5th** (d41)  
 8am, light the fire.
 
@@ -345,7 +348,7 @@ p7
 # gganimate, should show fall off in incidence when effective measure take over
 
 who <- c("USA", "Italy", "China", "South_Korea", "Spain", "Sweden", "Germany", "United_Kingdom", "Taiwan", "Singapore")
-limit <- 0.005
+limit <- -1
 
 ausdat <- covid19 %>% filter(country == "Australia", log(cases_million) > limit)
 nzdat <- covid19 %>% filter(country == "New_Zealand", log(cases_million) > limit)
