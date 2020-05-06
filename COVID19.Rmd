@@ -348,7 +348,7 @@ p7
 # gganimate, should show fall off in incidence when effective measure take over
 
 who <- c("USA", "Italy", "China", "South_Korea", "Spain", "Sweden", "Germany", "United_Kingdom", "Taiwan", "Singapore")
-limit <- -1
+limit <- -10
 
 ausdat <- covid19 %>% filter(country == "Australia", log(cases_million) > limit)
 nzdat <- covid19 %>% filter(country == "New_Zealand", log(cases_million) > limit)
