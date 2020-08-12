@@ -4,7 +4,7 @@ ecdc_url <- "https://opendata.ecdc.europa.eu/covid19/casedistribution/csv/"
 download.file(url = ecdc_url, destfile = "data/ecdc.csv")
 
 covid19 <- read_csv("data/ecdc.csv") %>% 
-  rename(date = "dateRep", country = "countriesAndTerritories", population = "popData2018") %>% 
+  rename(date = "dateRep", country = "countriesAndTerritories", population = "popData2019") %>% 
   mutate(date = dmy(date)) %>% 
   arrange(date, country) %>%
   

@@ -49,7 +49,7 @@ nz_april <- read_csv("data/nz_moh_april.csv") %>%
   mutate(date = dmy(date), flight_date = dmy(flight_date))
 
 nz_moh <- bind_rows(nz_moh_cases, nz_moh_probable) %>% 
-  rename(date = "Date of report", last_country = "Last country before return", flight = "Flight number",
+  rename(date = "Date notified of potential case", last_country = "Last location before return", flight = "Flight number",
          flight_date = "Arrival date", age_group = "Age group", travel = "Overseas travel", 
          flight_dep_date = "Flight departure date") %>% 
   
