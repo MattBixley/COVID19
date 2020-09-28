@@ -53,8 +53,16 @@ stmf %>%
 
 unique(stmf$cname)
 
+annotation <- data.frame(
+  x = lubridate::as_date(c("2020-07-08", "2020-08-02")),
+  y = c(5, 15),
+  label = c("Baby Lockdown", "Full Lockdown")
+)
+
 covnat %>% filter(cname == "Australia") %>% 
   ggplot(aes(x = date, y = cases/25000000*1000000)) +
-  geom_bar(stat = "identity", colour = "darkorange2", alpha = 0.5) +
+  geom_bar(stat = "identity", colour = "green", alpha = 0.5) +
   geom_bar(data = covnat %>% filter(cname == "New Zealand"), 
-           aes(x = date, y = cases/5000000*1000000), stat = "identity", colour = "brown1")
+           aes(x = date, y = cases/5000000*1000000), stat = "identity", colour = "grey50", alpha = 0.3) +
+  geom_text(data = annotation, aes( x=x, y=y, label=label), 
+            color="black", size=3 , angle=-45, fontface="bold", hjust = 1 )
